@@ -37,7 +37,7 @@ The X/ProFile kit from [VintageMicros](http://www.vintagemicros.com) comes with 
 
 <div class="side-by-side">
     <div class="toleft">
-        <p>The hardware itself is impressive, and is assembled by hand by the owner of VintageMicros, John Woodall. John is the exclusive distributer for the X/ProFile, and takes great pride in his work. The X/Profile can be installed inside the Lisa unit for a seamless look, or it can be installed in an external ProFile case with a power regulator that is available for an additional cost. </p>
+        <p>The hardware itself is impressive, and is assembled by hand by the owner of VintageMicros, John Woodall. John is the exclusive distributor for the X/ProFile, and takes great pride in his work. The X/Profile can be installed inside the Lisa unit for a seamless look, or it can be installed in an external ProFile case with a power regulator that is available for an additional cost. </p>
     </div>
     
     <div class="toright">
@@ -80,7 +80,7 @@ The data connection is a bit trickier, however, since the Lisa 2/5 did not have 
 
 <div class="side-by-side">
     <div class="toleft">
-        <p>The DB25 connector will route out the back of the machine and connect to the built-in parallel port of the Lisa.</p>
+        <p>The DB25 connector will route out the back of the machine and can be connected to the built-in parallel port of the Lisa or to an expansion parallel port card. In an Lisa 2/10 or Macintosh XL system, the X/ProFile can be connected directly to the cable previously connected to the Widget drive.</p>
     </div>
 
     <div class="toright">
@@ -118,7 +118,7 @@ Any changes to the X/ProFile settings should only be done after a thorough readi
 
 # Summary
 
-The X/ProFile is one of only a few third-party addons for the Apple Lisa that is currently in production and available for purchase. Of all the addons available, the X/ProFile is probably the most important, since an Apple Lisa is not really usable without some form of hard disk storage. Genuine Apple ProFile drives often sell for hundreds of dollars online, and most are sold as 'untested', putting buyers at risk of ending up with a DOA device. The easy expansion capabilities of the X/ProFile and its compatibility with all known Lisa operating systems like Lisa Office System, MacWorks, Xenix, and more, make it a no brainer for any Lisa owner looking to archive their ProFile drives and enjoy their Lisa machine.
+The X/ProFile is one of only a few third-party addons for the Apple Lisa that is currently in production and available for purchase. Of all the addons available, the X/ProFile is probably the most important, since an Apple Lisa is not really usable without some form of hard disk storage. Genuine Apple ProFile drives often sell for hundreds of dollars online, and most are sold as 'untested', putting buyers at risk of ending up with a DOA device. The easy expansion capabilities of the X/ProFile and its compatibility with all known Lisa operating systems like Lisa Office System, MacWorks, Xenix, and more, make it a no brainer for any Lisa owner looking to store their ProFile drives and enjoy their Lisa machine.
 
 For interested buyers, the X/ProFile can be found at [VintageMicros](http://vintagemicros.com/catalog/product_info.php/cPath/30/products_id/282). 
 
