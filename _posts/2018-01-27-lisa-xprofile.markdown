@@ -93,13 +93,13 @@ The data connection is a bit trickier, however, since the Lisa 2/5 did not have 
 Once the installation was complete, it was time to power up the Lisa. The kit comes with two compact flash cards; one has a Lisa Office System 2.1 install, and the other has a MacWorks install. Both are usable out of the gate without any changes to the X/ProFile necessary.
 
 <div class="side-by-side">
-    <div class="toright">
-        <p>The Lisa Office System employs a unique copy protection scheme that serializes applications to the serial number of the machine. The kit includes a video ROM chip that can be installed that allows the included Lisa Office System applications to work. Or, if you have original media, that can be used to install a fresh operating system and applications. Either way, the X/ProFile is completely compatible with Lisa applications. Maybe even Snappier™!</p>
-    </div>
-
     <div class="toleft">
         <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/los.png" alt="Alt Text">
         <figcaption class="caption">The Lisa Office System in all its glory</figcaption>
+    </div>
+
+    <div class="toright">
+<p>The Lisa Office System employs a unique copy protection scheme that serializes applications to the serial number of the machine. The kit includes a video ROM chip that can be installed that allows the included Lisa Office System applications to work. Or, if you have original media, that can be used to install a fresh operating system and applications. Either way, the X/ProFile is completely compatible with Lisa applications. Maybe even Snappier™!</p>
     </div>
 </div>
 
