@@ -1,7 +1,7 @@
 ---
 title: "This Old Lisa: A Look at the X/ProFile Storage Adapter"
 layout: post
-date: 2017-02-02
+date: 2018-02-02
 image: /assets/images/2018-01-27-lisa-xprofile/lisa2.png
 headerImage: true
 tag:
@@ -37,7 +37,9 @@ The X/ProFile kit from [VintageMicros](http://www.vintagemicros.com) comes with 
 
 <div class="side-by-side">
     <div class="toleft">
-        <p>The hardware itself is impressive, and is assembled by hand by the owner of VintageMicros, John Woodall. John is the exclusive distributer for the X/ProFile, and takes great pride in his work. The X/Profile can be installed inside the Lisa unit for a seamless look, or it can be installed in an external ProFile case with a power regulator that is available for an additional cost. </p>
+        <p>The hardware itself is impressive, and is assembled by hand by the owner of VintageMicros, John Woodall. John is the exclusive distributer for the X/ProFile, and takes great pride in his work. The X/Profile can be installed inside the Lisa unit for a seamless look, or it can be installed in an external ProFile case with a power regulator that is available for an additional cost. 
+        
+My Lisa is a Lisa 2/5, which is the second iteration of the system and resembles the Lisa 1 in almost every way. The Lisa 2/5 was originally equipped with a 5 Mhz Motorola 68000 processor, a built-in 400k Sony 3.5" floppy drive, and an external 5 megabyte Apple ProFile hard disk drive. The Lisa 2/5 also included two built-in external serial ports and a single built-in external parallel port. The Apple ProFile drive could be connected to the built-in parallel port or an expansion parallel port card if desired.</p>
     </div>
 
     <div class="toright">
@@ -45,8 +47,6 @@ The X/ProFile kit from [VintageMicros](http://www.vintagemicros.com) comes with 
         <figcaption class="caption">Kit components from VintageMicros</figcaption>
     </div>
 </div>
-
-My Lisa is a Lisa 2/5, which is the second iteration of the system and resembles the Lisa 1 in almost every way. The Lisa 2/5 was originally equipped with a 5 Mhz Motorola 68000 processor, a built-in 400k Sony 3.5" floppy drive, and an external 5 megabyte Apple ProFile hard disk drive. The Lisa 2/5 also included two built-in external serial ports and a single built-in external parallel port. The Apple ProFile drive could be connected to the built-in parallel port or an expansion parallel port card if desired.
 
 The Lisa 1 included the same hardware, with the exception of the floppy drive. The original Apple Lisa has two built-in 800k "Twiggy" floppy drives that were very problematic. The Lisa 2, released almsot a year later, solved the issue of problematic floppy drives by utilizing the same drive as it's cousin, the original Macintosh. This was at the expense of drive capacity, however, the external ProFile alleviated some of the pain. The Apple Lisa 2/10 and the Macintosh XL are similiar in design to the Lisa 2/5, and leveraged an internal 10 MB hard drive known as the Widget. Over 30 years later, Widget and ProFile drives in working condition are few and far between. 
 
