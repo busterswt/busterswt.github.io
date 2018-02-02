@@ -62,7 +62,7 @@ The X/ProFile is very much a plug-and-play device as delivered, but requires car
         <figcaption class="caption">Board mounted directly to the card cage for a factory look</figcaption>
     </div>
 </div>
-
+<p>&nbsp;</p>
 <div class="side-by-side">
     <div class="toleft">
     <center><img class="image" src="/assets/images/2018-01-27-lisa-xprofile/twiggy-cable.png" alt="Alt Text"></center>
