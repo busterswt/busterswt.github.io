@@ -48,7 +48,7 @@ My Lisa is a Lisa 2/5, which is the second iteration of the system and resembles
     </div>
 </div>
 
-The Lisa 1 included the same hardware, with the exception of the floppy drive. The original Apple Lisa has two built-in 800k "Twiggy" floppy drives that were very problematic. The Lisa 2, released almsot a year later, solved the issue of problematic floppy drives by utilizing the same drive as it's cousin, the original Macintosh. This was at the expense of drive capacity, however, the external ProFile alleviated some of the pain. The Apple Lisa 2/10 and the Macintosh XL are similiar in design to the Lisa 2/5, and leveraged an internal 10 MB hard drive known as the Widget. Over 30 years later, Widget and ProFile drives in working condition are few and far between. 
+The Lisa 1 included the same hardware, with the exception of the floppy drive. The original Apple Lisa has two built-in 800k "Twiggy" floppy drives that were very problematic. The Lisa 2, released almsot a year later, solved the issue of problematic floppy drives by utilizing the same drive as it's cousin, the original Macintosh. This was at the expense of drive capacity, however, the external ProFile alleviated some of the pain. The Apple Lisa 2/10 and the Macintosh XL are similiar in design to the Lisa 2/5, but contained some major architectural changes and leveraged an internal 10 MB hard drive known as the Widget. Over 30 years later, Widget and ProFile drives in working condition are few and far between. 
 
 # Installation 
 
