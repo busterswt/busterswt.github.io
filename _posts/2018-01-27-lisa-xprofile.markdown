@@ -16,14 +16,14 @@ description: A look at the X/ProFile storage adapter for the vintage Apple Lisa
 
 ---
 
-If you're an Apple Lisa owner, there's a good chance you're playing with fire every time you turn the machine on. No, not because of the infamous battery leakage issues, but rather, due to the nature of aging magnetic media and tired drive motors and mechanisms.
+If you're an Apple Lisa owner, there's a good chance you're playing with fire every time you turn the machine on. No, not because of the infamous battery leakage issues that can take out your I/O board or worse. But rather, the risk you take of losing data due to the nature of aging magnetic media and tired drive motors and mechanisms.
 
-The vintage computing scene has exploded in recent years, and new developments in hardware have given new life to old beasts like the original Macintosh, Amigas, Apple IIs, and even the Lisa. In this episode of This Old Lisa, I'll be taking a look at the X/ProFile compact flash-based storage system for the Apple Lisa series of machines, drop-in a replacement for vintage Apple ProFile and Widget hard drives that power Lisa systems. 
+The vintage computing scene has exploded in recent years, and new developments in hardware have given new life to old beasts like the original Macintosh, Amigas, Apple IIs, and even the Lisa. In this episode of This Old Lisa, I'll be taking a look at the X/ProFile compact flash-based storage system for the Apple Lisa series of machines, a drop-in replacement for vintage Apple ProFile and Widget hard drives that power Lisa systems. 
 <!--more-->
 
 # A little background
 
-I've been an admirer of the Apple Lisa for over twenty-five years, and recently had an opportunity to add one to my collection of vintage Apple hardware. Growing up, I only knew of the Lisa from old Sun Remarketing catalogs that would show up in the mail every now and then. I'd peruse the pages of not-so-current generation systems, and make a shopping list that would take almost twenty years to fulfill. 
+I've been an admirer of the Apple Lisa for over twenty-five years, and recently had an opportunity to add one to my collection of vintage Apple hardware. Growing up, I only knew of the Lisa from old Sun Remarketing catalogs that would show up in the mail every now and then. I'd peruse the pages of not-so-current generation systems, and make a shopping list that would take nearly twenty years to fulfill. 
 
 The [X/ProFile](http://sigmasevensystems.com/xprofile.html) is a storage system developed by [Seven Sigma Systems](http://sigmasevensystems.com/), a reknowned expert in all things Lisa. Seven Sigma Systems has been in the Lisa space since the 1980's, back when these machines were viable alternatives to Apple's then-current stable of Macintosh systems. The Apple Lisa's unique hardware enabled it to run software known as MacWorks that provided an environment that looked and felt like a Macintosh, which allowed various Macintosh operating systems and applications to be used. The Lisa provided a larger screen, more RAM, and more storage than what was available with Macintoshes at the time, which meant that third-party addons were welcomed to help extended the life of these machines. Apple even remarketed the Lisa as the Macintosh XL, and made hardware changes to make it more 'Mac-like' and closed the door on the Lisa forever.
 
