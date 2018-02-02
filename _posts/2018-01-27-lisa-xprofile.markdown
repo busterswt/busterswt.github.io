@@ -37,16 +37,16 @@ The X/ProFile kit from [VintageMicros](http://www.vintagemicros.com) comes with 
 
 <div class="side-by-side">
     <div class="toleft">
-        <p>The hardware itself is impressive, and is assembled by hand by the owner of VintageMicros, John Woodall. John is the exclusive distributer for the X/ProFile, and takes great pride in his work. The X/Profile can be installed inside the Lisa unit for a seamless look, or it can be installed in an external ProFile case with a power regulator that is available for an additional cost. 
-        
-My Lisa is a Lisa 2/5, which is the second iteration of the system and resembles the Lisa 1 in almost every way. The Lisa 2/5 was originally equipped with a 5 Mhz Motorola 68000 processor, a built-in 400k Sony 3.5" floppy drive, and an external 5 megabyte Apple ProFile hard disk drive. The Lisa 2/5 also included two built-in external serial ports and a single built-in external parallel port. The Apple ProFile drive could be connected to the built-in parallel port or an expansion parallel port card if desired.</p>
+        <p>The hardware itself is impressive, and is assembled by hand by the owner of VintageMicros, John Woodall. John is the exclusive distributer for the X/ProFile, and takes great pride in his work. The X/Profile can be installed inside the Lisa unit for a seamless look, or it can be installed in an external ProFile case with a power regulator that is available for an additional cost. </p>
     </div>
-
+    
     <div class="toright">
         <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/kit.png" alt="Alt Text">
         <figcaption class="caption">Kit components from VintageMicros</figcaption>
     </div>
 </div>
+
+My Lisa is a Lisa 2/5, which is the second iteration of the system and resembles the Lisa 1 in almost every way. The Lisa 2/5 was originally equipped with a 5 Mhz Motorola 68000 processor, a built-in 400k Sony 3.5" floppy drive, and an external 5 megabyte Apple ProFile hard disk drive. The Lisa 2/5 also included two built-in external serial ports and a single built-in external parallel port. The Apple ProFile drive could be connected to the built-in parallel port or an expansion parallel port card if desired.
 
 The Lisa 1 included the same hardware, with the exception of the floppy drive. The original Apple Lisa has two built-in 800k "Twiggy" floppy drives that were very problematic. The Lisa 2, released almsot a year later, solved the issue of problematic floppy drives by utilizing the same drive as it's cousin, the original Macintosh. This was at the expense of drive capacity, however, the external ProFile alleviated some of the pain. The Apple Lisa 2/10 and the Macintosh XL are similiar in design to the Lisa 2/5, but contained some major architectural changes and leveraged an internal 10 MB hard drive known as the Widget. Over 30 years later, Widget and ProFile drives in working condition are few and far between. 
 
@@ -66,13 +66,13 @@ The X/ProFile is very much a plug-and-play device as delivered, but requires car
 </div>
 
 <div class="side-by-side">
-    <div class="toright">
-        <p>When installing into a Lisa 2/5, you can take advantage of some left-over Twiggy hardware from the Lisa 1 design - notably, the Twiggy power cable. One of the cables is connected to a built-in Lisa Lite adapter card that converts a Twiggy interface to the Sony interface. The other cable is left unused, and may be found hiding behind or under the drive cage.</p>
+    <div class="toleft">
+    <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/twiggy-cable.png" alt="Alt Text">
+        <figcaption class="caption">The Twiggy power cable comes in handy</figcaption>
     </div>
 
-    <div class="toleft">
-        <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/twiggy-cable.png" alt="Alt Text">
-        <figcaption class="caption">The Twiggy power cable comes in handy</figcaption>
+    <div class="toright">
+        <p>When installing into a Lisa 2/5, you can take advantage of some left-over Twiggy hardware from the Lisa 1 design - notably, the Twiggy power cable. One of the cables is connected to a built-in Lisa Lite adapter card that converts a Twiggy interface to the Sony interface. The other cable is left unused, and may be found hiding behind or under the drive cage.</p>
     </div>
 </div>
 
@@ -93,13 +93,13 @@ The data connection is a bit trickier, however, since the Lisa 2/5 did not have 
 Once the installation was complete, it was time to power up the Lisa. The kit comes with two compact flash cards; one has a Lisa Office System 2.1 install, and the other has a MacWorks install. Both are usable out of the gate without any changes to the X/ProFile necessary.
 
 <div class="side-by-side">
-    <div class="toright">
-        <p>The Lisa Office System employs a unique copy protection scheme that serializes applications to the serial number of the machine. The kit includes a video ROM chip that can be installed that allows the included Lisa Office System applications to work. Or, if you have original media, that can be used to install a fresh operating system and applications. Either way, the X/ProFile is completely compatible with Lisa applications. Maybe even Snappier™!</p>
-    </div>
-
     <div class="toleft">
         <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/los.png" alt="Alt Text">
         <figcaption class="caption">The Lisa Office System in all its glory</figcaption>
+    </div>
+
+    <div class="toright">
+<p>The Lisa Office System employs a unique copy protection scheme that serializes applications to the serial number of the machine. The kit includes a video ROM chip that can be installed that allows the included Lisa Office System applications to work. Or, if you have original media, that can be used to install a fresh operating system and applications. Either way, the X/ProFile is completely compatible with Lisa applications. Maybe even Snappier™!</p>
     </div>
 </div>
 
