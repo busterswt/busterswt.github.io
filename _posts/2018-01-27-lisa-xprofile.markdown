@@ -41,7 +41,7 @@ The X/ProFile kit from [VintageMicros](http://www.vintagemicros.com) comes with 
     </div>
     
     <div class="toright">
-        <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/kit.png" alt="Alt Text">
+        <center><img class="image" src="/assets/images/2018-01-27-lisa-xprofile/kit.png" alt="Alt Text"></center>
         <figcaption class="caption">Kit components from VintageMicros</figcaption>
     </div>
 </div>
@@ -60,14 +60,14 @@ The X/ProFile is very much a plug-and-play device as delivered, but requires car
     </div>
 
     <div class="toright">
-        <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/board-mounted.png" alt="Alt Text">
+        <center><img class="image" src="/assets/images/2018-01-27-lisa-xprofile/board-mounted.png" alt="Alt Text"></center>
         <figcaption class="caption">Board mounted directly to the card cage for a factory look</figcaption>
     </div>
 </div>
 
 <div class="side-by-side">
     <div class="toleft">
-    <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/twiggy-cable.png" alt="Alt Text">
+    <center><img class="image" src="/assets/images/2018-01-27-lisa-xprofile/twiggy-cable.png" alt="Alt Text"></center>
         <figcaption class="caption">The Twiggy power cable comes in handy</figcaption>
     </div>
 
@@ -84,7 +84,7 @@ The data connection is a bit trickier, however, since the Lisa 2/5 did not have 
     </div>
 
     <div class="toright">
-        <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/data3.png" alt="Alt Text">
+        <center><img class="image" src="/assets/images/2018-01-27-lisa-xprofile/data3.png" alt="Alt Text"></center>
     </div>
 </div>
 
