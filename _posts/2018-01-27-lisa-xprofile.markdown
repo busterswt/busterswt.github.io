@@ -92,7 +92,7 @@ Once the installation was complete, it was time to power up the Lisa. The kit co
 
 <div class="side-by-side">
     <div class="toleft">
-        <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/los.png" alt="Alt Text">
+        <center><img class="image" src="/assets/images/2018-01-27-lisa-xprofile/los.png" alt="Alt Text"></center>
         <figcaption class="caption">The Lisa Office System in all its glory</figcaption>
     </div>
 
@@ -107,7 +107,7 @@ Once the installation was complete, it was time to power up the Lisa. The kit co
     </div>
 
     <div class="toright">
-        <img class="image" src="/assets/images/2018-01-27-lisa-xprofile/macworks.png" alt="Alt Text">
+        <center><img class="image" src="/assets/images/2018-01-27-lisa-xprofile/macworks.png" alt="Alt Text"></center>
         <figcaption class="caption">A meager System 7.1 environment</figcaption>
     </div>
 </div>
