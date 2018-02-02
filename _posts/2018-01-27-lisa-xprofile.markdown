@@ -100,7 +100,7 @@ Once the installation was complete, it was time to power up the Lisa. The kit co
 <p>The Lisa Office System employs a unique copy protection scheme that serializes applications to the serial number of the machine. The kit includes a video ROM chip that can be installed that allows the included Lisa Office System applications to work. Or, if you have original media, that can be used to install a fresh operating system and applications. Either way, the X/ProFile is completely compatible with Lisa applications.</p>
     </div>
 </div>
-
+<p>&nbsp;</p>
 <div class="side-by-side">
     <div class="toleft">
         <p>A few tweaks to the X/ProFile allowed me to format a 128 MB compact flash card into two 32 MB storage areas. Given the size, the storage areas are only be usable with MacWorks. Within twenty minutes, I had System 7.1 running on the X/ProFile.</p>
