@@ -1,7 +1,7 @@
 ---
 title: "This Old Lisa: Hands-on With the Sapient Technologies Lisa 1 & 2/5 Motherboard"
 layout: post
-date: 2017-02-26
+date: 2018-02-26
 image: /assets/images/2018-02-02-sapient-motherboard/lisalogo.png
 headerImage: true
 tag:
@@ -16,14 +16,14 @@ description: Hands-on with the Sapient Technologies motherboard for the Apple Li
 
 ---
 
-If you've been following the LisaList Google Group or other Apple Lisa news outlets lately, you may have seen mention of a group known as [Sapient Technologies](https://www.facebook.com/SapientTechnologies/) producing new hardware for these vintage machines. 
+If you've been following the LisaList Google Group or other Apple Lisa news outlets lately, you may have seen mention of a group known as [Sapient Technologies](https://www.facebook.com/SapientTechnologies/) producing new hardware for the Apple Lisa. 
 
 Sapient Technologies has some very interesting products in the pipeline, including:
 
-- A Lisa 1 and Lisa 2/5 motherboard (referred to as Lisa 1/5)
-- A Lisa 2/5 I/O board
-- A Lisa 1, 2/5, 2/10, XL CPU board
-- A 2-port parallel card
+- A Lisa 1 and Lisa 2/5 motherboard (referred to as Lisa 1/5 motherboard)
+- A Lisa 2/5 Input/Output (I/O) board
+- A Lisa 1, 2/5, 2/10, Macintosh XL CPU board
+- A 2-port parallel expansion card
 
 <!--more-->
 **Sapient Technologies** is a company made up of four Apple Lisa enthusiasts and professionals, including:
@@ -48,7 +48,7 @@ My Lisa 2/5 has a few upgrades, including:
 All of these combined makes for a computing experience not unlike a Macintosh Plus on steroids, and the perfect platform for testing Sapient's replacement components.
 
 # The motherboard
-The motherboard in the Apple Lisa is the backplane of the device. All of the goodness that makes a Lisa a *Lisa* connects to the motherboard. It's also located in a vulnerable position. Among their many achievements, Apple Lisa 1 and 2/5 machines are notorious for leaking batteries. The NiCD battery in an Apple Lisa is/was used to power parameter RAM when the machine was unplugged. Over the years, these contents of these batteries outgrew their shell, and the corrosive material found its way onto the I/O board and the motherboard, destroying components and traces in its path. Folks have tried many methods in attempts to repair the damage, most involving vinegar baths, toothbrushes, and retracing, only to find the damage can't be stopped in the long run:
+The motherboard in the Apple Lisa is the backplane of the device. All of the goodness that makes a Lisa a *Lisa* connects to the motherboard. It's also located in a vulnerable position. Among their many achievements, Apple Lisa 1 and 2/5 machines are notorious for leaking batteries. The NiCD battery in an Apple Lisa was used to power parameter RAM when the machine was unplugged. Over the years, the contents of these batteries outgrew their shell and the corrosive material found its way onto the I/O board and the motherboard, destroying components and traces in its path. Folks have tried many methods in attempts to repair the damage, most involving vinegar baths, toothbrushes, and retracing, only to find the damage can't be stopped in the long run:
 
 <figure>
   <img src="/assets/images/2018-02-02-sapient-motherboard/oldandbusted.png" alt="Old and Busted"/>
@@ -66,14 +66,14 @@ The Apple Lisa 2/10 and Macintosh XL are not prone to the same type of damage, s
 
 ## Rear connectors
 
-As you'd expect, the motherboard includes two serial ports, a single parallel port, and a single mouse port, all in factory locations. The mouse port does not have the locking mechanism as the original motherboard, but is fully compatible with Lisa 1 and Lisa 2 mice as well as 9-pin Macintosh mice of the same era. I've successfully tested both a Lisa 1 mouse (A9M0050) and a Macintosh 512k mouse (M0100).
+As you'd expect, the motherboard includes two serial ports, a single parallel port, and a single mouse port, all in factory locations. The mouse port does not have a locking mechanism like the original motherboard, but is fully compatible with Lisa 1 and Lisa 2 mice as well as 9-pin Macintosh mice of the same era. I've successfully tested both a Lisa 1 mouse (A9M0050) and a Macintosh 512k mouse (M0100).
 
 <figure>
   <img src="/assets/images/2018-02-02-sapient-motherboard/rearport.png" alt="Rear Ports"/>
   <figcaption>A look at the rear ports of the Sapient Technologies motherboard for the Apple Lisa 1 and 2/5.</figcaption>
 </figure>
 
-In a nod to the Lisa 2/10(XL) motherboard design, Sapient Technologies relocated the seldom-used video-out port and in its stead placed an 'Interrupt' button used to invoke the debugger. 
+In a nod to the Lisa 2/10(XL) motherboard design, Sapient Technologies relocated the seldom-used video-out port and in its stead placed an 'Interrupt' button used to invoke the debugger. The reset button remains in the factory location. 
 
 ## Main slots
 
@@ -92,10 +92,10 @@ Just like the original, the Sapient motherboard includes two RAM slots known as 
 
 ## Expansion slots
 
-Like the factory motherboard, the Sapient motherboard includes 3x expansion port slots that are fully compatible with the few Lisa expansion cards on the market, past or present. 
+Like the factory motherboard, the Sapient motherboard includes 3x expansion port slots that are fully compatible with the few Lisa expansion cards on the market, past or present:
 
 <figure>
-  <img src="/assets/images/2018-02-02-sapient-motherboard/expansionslots.png" alt="Main Slots"/>
+  <img src="/assets/images/2018-02-02-sapient-motherboard/expansionslots.png" alt="Expansion Slots"/>
   <figcaption>A look at the expansion slots of the Sapient Technologies motherboard for the Apple Lisa 1 and 2/5.</figcaption>
 </figure>
 
@@ -106,18 +106,18 @@ I've successfully tested the following expansion cards:
 
 ## Drive Cage Fan
 
-Like Macintosh systems of the era, the Lisa relies on fan-less convection cooling to keep things cool inside the chassis. With upgrades installed, the temperatures inside the chassis can rise to the point where random system crashes can occur on a regular basis. These crashes may manifest themselves as Address Errors, undocumented error codes, scrambled error messages, or even lockups. Even without upgrades, over time components exceed tolerences and cause unexpected behavior. The Sapient motherboard includes a built-in fan to keep the temperatures down, which is a great thing for upgraded systems and even beneficial for stock applications.
+Like Macintosh systems of the era, the Lisa relies on convection cooling to keep things cool inside the chassis. With upgrades installed, the temperatures inside the chassis can rise to the point where random system crashes can occur on a regular basis. These crashes may manifest themselves as Address Errors, undocumented error codes, scrambled error messages, or even lockups. Even without upgrades, over time components exceed tolerences and can cause unexpected behavior. The Sapient motherboard includes a built-in fan to keep the temperatures down, which is a great thing for upgraded systems and even beneficial for stock applications:
 
 <figure>
   <img src="/assets/images/2018-02-02-sapient-motherboard/cagefan.png" alt="Main Slots"/>
   <figcaption>A cage fan is included to keep the inside of the chassis cool and prolong the life of the components.</figcaption>
 </figure>
 
-For those that don't want or need a fan, it can be disabled or removed.
+The fan speed is not controlled by software, so it will run at peak speed. It's not really noticable, though, and the benefits outweight the additional noise. Besides, if you have a ProFile connected you'll never hear it! For those that don't want or need a fan, it can be disabled or removed.  
 
 # Installation
 
-The installation process involves removing the card cage from the machine, removing each card from the cage, and separating the cage frame from the motherboard. There are approximately twelve screws attaching the motherboard to the metal plate. Once removed, the factory motherboard can be lifted out and placed in an anti-static bag for safe keeping.
+The installation process involves removing the card cage from the machine, removing each card from the cage, and separating the cage frame from the motherboard. There are approximately twenty screws involved, give or take a couple. Once removed, the factory motherboard can be lifted out and placed in an anti-static bag for safe keeping.
 
 <div class="side-by-side">
     <div class="toleft">
@@ -125,14 +125,14 @@ The installation process involves removing the card cage from the machine, remov
     </div>
     
     <div class="toright">
-        <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/cardsinstalled.png" alt="Alt Text"></center>
+        <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/cardsinstalled.png" alt="Cards installed"></center>
         <figcaption class="caption">The Xlerator 18 and Sun Remarketing RAM board installed.</figcaption>
     </div>
 </div>
 
 # Testing
 
-Since acquiring this motherboard, I've put no less than 20 hours of actual usage on it, not including the more than 100 hours of power on-time. Equipped with my [X/ProFile](http://vintagemicros.com/catalog/product_info.php/products_id/282) (reviewed [here](http://www.jimmdenton.com/lisa-xprofile/)) and [FloppyEmu](https://www.bigmessowires.com/floppy-emu/), I set off to test this motherboard with some real-world usage.
+Since acquiring this motherboard, I've put no less than 30 hours of actual usage on it, not including the more than 100 hours of idle power on-time. Equipped with my [X/ProFile](http://vintagemicros.com/catalog/product_info.php/products_id/282) (reviewed [here](http://www.jimmdenton.com/lisa-xprofile/)) and my [FloppyEmu](https://www.bigmessowires.com/floppy-emu/), I set off to test this motherboard with some real-world usage.
 
 ## Lisa Office System
 
@@ -143,7 +143,7 @@ Since acquiring this motherboard, I've put no less than 20 hours of actual usage
     </div>
 
     <div class="toright">
-        <p>The Sapient Technologies Lisa 1/5 motherboard is electrically compatible with the factory Apple motherboard, so it was no surprise that it functioned as-expected with the Lisa Office System. In my tests, I successfully booted to LOS 2.0 and LOS 3.1, and even spent some time using LisaTerminal to communicate with my iMac over a serial cable <not pictured>.</p>
+        <p>The Sapient Technologies Lisa 1/5 motherboard is electrically compatible with the factory Apple motherboard, so it was no surprise that it functioned as-expected with the Lisa Office System. In my tests, I successfully booted to LOS 2.0 and LOS 3.1, and even spent some time using LisaTerminal to communicate with my iMac over a serial cable !not pictured!.</p>
     </div>
 </div>
 
