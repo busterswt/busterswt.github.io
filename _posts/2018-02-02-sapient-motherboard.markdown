@@ -27,7 +27,7 @@ If you've been following the LisaList Google Group or other Apple Lisa news outl
 - A 4-port serial expansion card for use with Microsoft Xenix
 
 <!--more-->
-To design and build these products, Dr. Todd Meyer of **Sapient Technologies** assembled a team of himself and other Apple Lisa enthusiasts and professionals, including:
+To design and build these products, Todd Meyer of **Sapient Technologies** assembled a team consisting of himself and other Apple Lisa enthusiasts and professionals, including:
 
 - James MacPhail of Sigma Seven Systems
 - John Woodall of VintageMicros
