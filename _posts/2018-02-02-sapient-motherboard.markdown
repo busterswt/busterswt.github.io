@@ -16,26 +16,26 @@ description: Hands-on with the Sapient Technologies motherboard for the Apple Li
 
 ---
 
-If you've been following the LisaList Google Group or other Apple Lisa news outlets lately, you may have seen mention of a group known as [Sapient Technologies](https://www.facebook.com/SapientTechnologies/) producing new hardware for the Apple Lisa. 
-
-Sapient Technologies has some very interesting products in the pipeline, including:
+If you've been following the LisaList Google Group or other Apple Lisa news outlets lately, you may have seen mention of a group known as [Sapient Technologies](https://www.facebook.com/SapientTechnologies/) producing new hardware for the Apple Lisa. Sapient Technologies has some very interesting products in the pipeline, including:
 
 - A Lisa 1 and Lisa 2/5 motherboard (referred to as Lisa 1/5 motherboard)
-- A Lisa 2/5 Input/Output (I/O) board
+- A Lisa 2/10 and Macintosh XL motherboard
+- A Lisa 1 and Lisa 2/5 Input/Output (I/O) board
+- A Lisa 2/10 and Macintosh XL Input/Output (I/O) board
 - A Lisa 1, 2/5, 2/10, Macintosh XL CPU board
 - A 2-port parallel expansion card
+- A 4-port serial expansion card for use with Microsoft Xenix
 
 <!--more-->
-**Sapient Technologies** is a company made up of four Apple Lisa enthusiasts and professionals, including:
+To design and build these products, Dr. Todd Meyer of **Sapient Technologies** assembled a team of himself and other Apple Lisa enthusiasts and professionals, including:
 
-- Todd Meyer
-- James MacPhail
+- James MacPhail of Sigma Seven Systems
+- John Woodall of VintageMicros
 - Rick Ragnini
-- John Woodall
 
 Their purpose is simple: to extend the life of the Apple Lisa platform. 
 
-Their products could not come at a better time. Thirty-five years after the introduction of the Apple Lisa and its offspring, the Apple Lisa 2 and the Macintosh XL, many of these machines have developed a knack for not functioning. Whether it's due to corrosion caused by leaking batteries or aging electrolytics, it's no secret that an Apple Lisa will need some ongoing TLC to remain in the stable.
+These efforts have taken years to develop, and the resulting products could not have come at a better time. Thirty-five years after the introduction of the Apple Lisa and its offspring, the Apple Lisa 2 and the Macintosh XL, many of these machines have developed a knack for not functioning. Whether it's due to corrosion caused by leaking batteries or aging electrolytics, it's no secret that an Apple Lisa will need some ongoing TLC to remain in the stable.
 
 My Lisa 2/5 has a few upgrades, including:
 
@@ -179,7 +179,7 @@ As part of my testing procedure, many disk images were read from and written to 
 
 <div class="side-by-side">
     <div class="toleft">
-        <p>For grins, I fired up Adobe Illustrator. As expected, it ran without a hitch. The replacement motherboard won't make software work that didn't already work with the stock motherboard, but it **can** offer stability to certain operations affected by damaged components, such as printing or communications over the serial ports or data operations over the parallel interface.</p>
+        <p>For grins, I fired up Adobe Illustrator. As expected, it ran without a hitch. The replacement motherboard won't make software work that didn't already work with the stock motherboard, but it <i>can</i> offer stability to certain operations affected by damaged components, such as printing or communications over the serial ports or data operations over the parallel interface.</p>
     </div>
     
     <div class="toright">
@@ -190,7 +190,7 @@ As part of my testing procedure, many disk images were read from and written to 
 
 # Summary
 
-The Apple Lisa 1/5 motherboard from Sapient Technologies is a must-have item for those whose motherboards are beyond repair or whose failure is inevitable. Its compatibility with existing CPU, I/O, RAM, and expansion cards cannot be overstated. It *just works*. John Woodall at [VintageMicros](http://www.vintagemicros.com) hand-assembles these boards, and the quality is on-par with what I've come to expect from his work. Every port, slot, resistor, capacitor, or component has a purpose. Every solder joint is clean. Every trace is intact. If you're restoring an Apple Lisa 1 or a Lisa 2/5, and you're looking for a motherboard that you ***know*** will work, you can't go wrong with the Sapient Technologies Lisa 1/5 Motherboard.
+It's no secret that developing new hardware for obsolete computing platforms is a labor of love and unlikely to make someone rich, which makes Sapient Technology's focus on extending the life of the Apple Lisa with quality products an admirable one. The Apple Lisa 1/5 motherboard from Sapient Technologies is a must-have item for those whose motherboards are beyond repair or whose failure is inevitable. Its compatibility with existing CPU, I/O, RAM, and expansion cards cannot be overstated. It *just works*. John Woodall at [VintageMicros](http://www.vintagemicros.com) hand-assembles these boards, and the quality is on-par with what I've come to expect from his work. Every port, slot, resistor, capacitor, or component has a purpose. Every solder joint is clean. Every trace is intact. If you're restoring an Apple Lisa 1 or a Lisa 2/5, and you're looking for a motherboard that you ***know*** will work, you can't go wrong with the Sapient Technologies Lisa 1/5 Motherboard.
 
 For interested buyers, the Sapient Technologies Lisa 1/5 Motherboard can be found at [VintageMicros](http://vintagemicros.com/catalog/product_info.php/products_id/291). 
 
