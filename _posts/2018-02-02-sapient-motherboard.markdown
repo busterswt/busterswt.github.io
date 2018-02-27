@@ -139,7 +139,7 @@ Since acquiring this motherboard, I've put no less than 30 hours of actual usage
 <div class="side-by-side">
     <div class="toleft">
     <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/lisadesktop.png" alt="Lisa OS"></center>
-        <figcaption class="caption">Point-to-point connections. When you need it slowly and securely.</figcaption>
+        <figcaption class="caption">The Lisa Office System Desktop</figcaption>
     </div>
 
     <div class="toright">
@@ -195,7 +195,7 @@ The Apple Lisa 1/5 motherboard from Sapient Technologies is a must-have item for
 For interested buyers, the Sapient Technologies Lisa 1/5 Motherboard can be found at [VintageMicros](http://vintagemicros.com/catalog/product_info.php/products_id/291). 
 
 <figure>
-  <img src="/assets/images/2018-02-02-sapient-motherboard/lisalogo.png" alt="Lisa!"/>
+  <img src="/assets/images/2018-02-02-sapient-motherboard/lisalogo2.png" alt="Lisa!"/>
   <figcaption>Picture courtesy of futurezone.de.</figcaption>
 </figure>
 
