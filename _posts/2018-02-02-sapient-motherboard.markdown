@@ -179,7 +179,7 @@ As part of my testing procedure, many disk images were read from and written to 
 
 <div class="side-by-side">
     <div class="toleft">
-        <p>For grins, I fired up Adobe Illustrator. As expected, it ran without a hitch.</p>
+        <p>For grins, I fired up Adobe Illustrator. As expected, it ran without a hitch. The replacement motherboard won't make software work that didn't already work with the stock motherboard, but it **can** offer stability to certain operations affected by damaged components, such as printing or communications over the serial ports or data operations over the parallel interface.</p>
     </div>
     
     <div class="toright">
