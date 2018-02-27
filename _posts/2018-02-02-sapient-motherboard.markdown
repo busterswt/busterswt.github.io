@@ -138,12 +138,12 @@ Since acquiring this motherboard, I've put no less than 30 hours of actual usage
 
 <div class="side-by-side">
     <div class="toleft">
-    <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/lisadesktop.png" alt="Alt Text"></center>
+    <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/lisadesktop.png" alt="Lisa OS"></center>
         <figcaption class="caption">Point-to-point connections. When you need it slowly and securely.</figcaption>
     </div>
 
     <div class="toright">
-        <p>The Sapient Technologies Lisa 1/5 motherboard is electrically compatible with the factory Apple motherboard, so it was no surprise that it functioned as-expected with the Lisa Office System. In my tests, I successfully booted to LOS 2.0 and LOS 3.1, and even spent some time using LisaTerminal to communicate with my iMac over a serial cable !not pictured!.</p>
+        <p>The Sapient Technologies Lisa 1/5 motherboard is electrically compatible with the factory Apple motherboard, so it was no surprise that it functioned as-expected with the Lisa Office System. In my tests, I successfully booted to LOS 2.0 and LOS 3.1, and even spent some time using LisaTerminal to communicate with my iMac over a serial cable (but failed to snap a picture!)</p>
     </div>
 </div>
 
@@ -155,14 +155,16 @@ Since acquiring this motherboard, I've put no less than 30 hours of actual usage
     </div>
     
     <div class="toright">
-        <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/system7-2.png" alt="Alt Text"></center>
+        <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/system7-2.png" alt="System 7"></center>
         <figcaption class="caption">System 7.1 running on the Apple Lisa</figcaption>
     </div>
 </div>
 
+### Testing the serial ports
+
 <div class="side-by-side">
     <div class="toleft">
-    <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/zterm.png" alt="Alt Text"></center>
+    <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/zterm.png" alt="serial"></center>
         <figcaption class="caption">Point-to-point connections. When you need it slowly and securely.</figcaption>
     </div>
 
@@ -171,13 +173,17 @@ Since acquiring this motherboard, I've put no less than 30 hours of actual usage
     </div>
 </div>
 
+### Testing general operations
+
+As part of my testing procedure, many disk images were read from and written to the FloppyEmu without issue. The stock floppy drive had no issues, either. I went thru no less than five operating system installations, including Lisa Office System and Macintosh System 6.05, 6.08, 7.0, and 7.1.
+
 <div class="side-by-side">
     <div class="toleft">
         <p>For grins, I fired up Adobe Illustrator. As expected, it ran without a hitch.</p>
     </div>
     
     <div class="toright">
-        <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/illustrator.png" alt="Alt Text"></center>
+        <center><img class="image" src="/assets/images/2018-02-02-sapient-motherboard/illustrator.png" alt="Illustrator"></center>
         <figcaption class="caption">Illustrator may be overkill for text, but it's still cool.</figcaption>
     </div>
 </div>
@@ -189,7 +195,7 @@ The Apple Lisa 1/5 motherboard from Sapient Technologies is a must-have item for
 For interested buyers, the Sapient Technologies Lisa 1/5 Motherboard can be found at [VintageMicros](http://vintagemicros.com/catalog/product_info.php/products_id/291). 
 
 <figure>
-  <img src="/assets/images/2018-02-02-sapient-motherboard/lisalogo.png" alt="Main Slots"/>
+  <img src="/assets/images/2018-02-02-sapient-motherboard/lisalogo.png" alt="Lisa!"/>
   <figcaption>Picture courtesy of futurezone.de.</figcaption>
 </figure>
 
