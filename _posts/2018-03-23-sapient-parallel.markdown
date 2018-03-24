@@ -53,10 +53,10 @@ Like the original Apple dual-port parallel card, the Sapient card provides two D
 
 <figure>
   <img src="/assets/images/2018-03-23-sapient-parallel/orig_vs_sapient2_800.png" alt="side by side"/>
-  <figcaption>An original Apple parallel port card compared to a Sapient Technologies parallel card.</figcaption>
+  <figcaption>An original Apple parallel port card compared to a Sapient Technologies parallel card. </figcaption>
 </figure>
 
-<add more??>
+John Woodall at VintageMicros hand-builds every parallel card that goes out the door. The build quality is second to none, and each card is warrantied. 
 
 # Installation
 
