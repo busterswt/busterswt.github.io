@@ -22,7 +22,7 @@ I recently acquired a second Apple Lisa 2/5 system in non-working condition, and
 The Apple Lisa and Macintosh XL series of machines rely on a parallel interface to provide connectivity to their respective storage devices. In the case of the Apple Lisa 1 and 2/5, an external parallel port is used to connect an Apple ProFile hard disk to the machine. On the Lisa 2/10 and Macintosh XL, the parallel interface exists as a header off the motherboard and connects to the internal Widget hard drive. Needless to say, additional parallel ports are a *must* for additional storage capabilities and other peripherals. 
 
 # The parallel card
-Apple released an expansion card for the Lisa known as the *Parallel Interface* that provided two external parallel ports and supported connectivity to Apple ProFile hard drives and other devices. 
+Apple released an expansion card for the Lisa known as the ***Parallel Interface*** that provided two external parallel ports and supported connectivity to Apple ProFile hard drives and other devices. 
 
 <div class="side-by-side">
     <div class="toleft">
@@ -41,6 +41,7 @@ Apple released an expansion card for the Lisa known as the *Parallel Interface* 
     <div class="toleft">
     <center><img class="image" src="/assets/images/2018-03-23-sapient-parallel/sapient_400.png" alt="serial"></center>
         <figcaption class="caption">The Sapient Technologies dual-port parallel card carries the characteristic purple PCB that is the calling card of the brand.</figcaption>
+      <br>
     </div>
 
     <div class="toright">
@@ -48,14 +49,14 @@ Apple released an expansion card for the Lisa known as the *Parallel Interface* 
     </div>
     <br>
 </div>
-
+<br>
 Like the original Apple dual-port parallel card, the Sapient card provides two DB-25 parallel interfaces for connecting devices to the system:
 
 <figure>
   <img src="/assets/images/2018-03-23-sapient-parallel/orig_vs_sapient2_800.png" alt="side by side"/>
-  <figcaption>An original Apple parallel port card compared to a Sapient Technologies parallel card. </figcaption>
 </figure>
-
+  <figcaption>An *unmasked* original Apple parallel port card compared to a Sapient Technologies parallel card. </figcaption>
+<br>
 John Woodall at VintageMicros hand-builds every parallel card that goes out the door. The build quality is second to none, and each card is warrantied. 
 
 # Installation
@@ -77,16 +78,17 @@ When I first acquired this card I set out to verify that it supported a dual Pro
 
 <figure>
   <img src="/assets/images/2018-03-23-sapient-parallel/macworks.png" alt="macworks"/>
-  <figcaption>Two Apple ProFile drives mounted in Macworks running System 6</figcaption>
 </figure>
+  <figcaption>Two Apple ProFile drives mounted in Macworks running System 6</figcaption>
+
 
 <figure>
   <img src="/assets/images/2018-03-23-sapient-parallel/los.png" alt="side by side"/>
-  <figcaption>Two Apple ProFile drives mounted in the Lisa Office System version 3.0</figcaption>
 </figure>
+  <figcaption>Two Apple ProFile drives mounted in the Lisa Office System version 3.0. The floppy cable is connected to a FloppyEmu (not pictured).</figcaption>
 
 # Summary
-Like many other components for the Apple Lisa, original parallel interface cards can fetch high prices thanks to their *vintageness* despite their actual operating status. While not as prone to failure as a motherboard or I/O card might be, buying an original parallel interface from eBay or other unknown source can be an expensive gamble. The dual-port parallel interface card from Sapient Technologies is great alternative to the original while providing the same functionality, expansion capabilities, and compatibility. 
+Like many other components for the Apple Lisa, original parallel interface cards can fetch high prices thanks to their *vintageness* rather than their actual operating status. While not as prone to failure as a motherboard or I/O card might be, buying an original parallel interface from eBay or other unknown source can be an expensive gamble. The dual-port parallel interface card from Sapient Technologies is great alternative to the original while providing the same functionality, expansion capabilities, and compatibility. 
 
 The LisaFAQ at [http://lisafaq.sunder.net/](http://lisafaq.sunder.net/) is a great resource for Lisa-related information, and all tips and tricks related to the Apple Parallel card apply to the Sapient card as well. For more info, check out the "[What are the characteristics of the Dual Parallel Port Card](http://lisafaq.sunder.net/lisafaq-hw-exp-2xpar_card.html)" section of the FAQ.
 
