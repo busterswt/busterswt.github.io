@@ -79,12 +79,13 @@ When I first acquired this card I set out to verify that it supported a dual Pro
 <figure>
   <img src="/assets/images/2018-03-23-sapient-parallel/macworks.png" alt="macworks"/>
 </figure>
+<br>
   <figcaption>Two Apple ProFile drives mounted in Macworks running System 6</figcaption>
-
-
+  
 <figure>
   <img src="/assets/images/2018-03-23-sapient-parallel/los.png" alt="side by side"/>
 </figure>
+<br>
   <figcaption>Two Apple ProFile drives mounted in the Lisa Office System version 3.0. The floppy cable is connected to a FloppyEmu (not pictured).</figcaption>
 
 # Summary
