@@ -18,7 +18,7 @@ description: Hands-on with the Sapient Technologies dual-port parallel card for 
 
 I recently acquired a second Apple Lisa 2/5 system in non-working condition, and part of its rehabilitation will involve replacing many of its internal components. Back in February, I installed and [reviewed](http://www.jimmdenton.com/sapient-motherboard/) a replacement motherboard for the Apple Lisa 1 and 2/5 personal computers. Luckily for me, Todd Meyer and the crew at [Sapient Technologies](https://www.facebook.com/SapientTechnologies/) have been hard at work and recently released a dual-port parallel card for the Apple Lisa and Macintosh XL that supports all known Lisa peripherals that utilize a parallel interface, including the Apple Dot Matrix printer and Apple ProFile hard disks as well as the [X/ProFile](http://vintagemicros.com/catalog/lisa-xprofile-hard-drive-emulator-p-282.html) from Sigma Seven Systems and VintageMicros. 
 
-<!-- more -->
+<!--more-->
 The Apple Lisa and Macintosh XL series of machines rely on a parallel interface to provide connectivity to their respective storage devices. In the case of the Apple Lisa 1 and 2/5, an external parallel port is used to connect an Apple ProFile hard disk to the machine. On the Lisa 2/10 and Macintosh XL, the parallel interface exists as a header off the motherboard and connects to the internal Widget hard drive. Needless to say, additional parallel ports are a *must* for additional storage capabilities and other peripherals. 
 
 # The parallel card
@@ -26,7 +26,7 @@ Apple released an expansion card for the Lisa known as the *Parallel Interface* 
 
 <div class="side-by-side">
     <div class="toleft">
-        <p>At the time, those peripherals included the Apple Dot Matrix printer and not much else. The Apple Lisa has three expansion slots, which means it can support up to three dual-port parallel cards connecting up to six additional hard disks to the system. Support for this configuration varies by operating system. At an original retail price of $3,499, six 5MB ProFile hard drives providing up to 30MB of additional storgae would have cost a whopping $21,000!
+        <p>At the time, those peripherals included the Apple Dot Matrix printer and not much else. The Apple Lisa has three expansion slots, which means it can support up to three dual-port parallel cards connecting up to six additional hard disks to the system. Support for this configuration varies by operating system. At an original retail price of $3,499, six 5MB ProFile hard drives providing up to 30MB of additional storage would have cost a whopping $21,000!
 </p>
     </div>
     
