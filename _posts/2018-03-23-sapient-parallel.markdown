@@ -57,7 +57,7 @@ Like the original Apple dual-port parallel card, the Sapient card provides two D
 </figure>
   <figcaption>An *unmasked* original Apple parallel port card compared to a Sapient Technologies parallel card. </figcaption>
 <br>
-John Woodall at VintageMicros hand-builds every parallel card that goes out the door. The build quality is second to none, and each card is warrantied. 
+John Woodall at VintageMicros hand-builds every parallel card that goes out the door. The build quality is second to none, and each card is warrantied. An [X/ProFile](http://vintagemicros.com/catalog/lisa-xprofile-hard-drive-emulator-p-282.html) can be connected to each interface and can provide up to 4 gigabytes of total storage capacity, per card, depending on the operating environment!
 
 # Installation
 
