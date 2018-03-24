@@ -34,8 +34,9 @@ Apple released an expansion card for the Lisa known as the *Parallel Interface* 
         <center><img class="image" src="/assets/images/2018-03-23-sapient-parallel/original.png" alt="Cards installed"></center>
         <figcaption class="caption">These pop up on eBay from time to time in unknown working condition.</figcaption>
     </div>
+    <br>
 </div>
-
+<br>
 <div class="side-by-side">
     <div class="toleft">
     <center><img class="image" src="/assets/images/2018-03-23-sapient-parallel/sapient_400.png" alt="serial"></center>
@@ -45,16 +46,17 @@ Apple released an expansion card for the Lisa known as the *Parallel Interface* 
     <div class="toright">
         <p>The Apple ProFile external hard disks came in two variants: a 5MB model and later, a 10MB model. Thanks to the MacWorks operating environment and other enhancements for the Lisa, users can take advantage of a wide array of software that is compatible with the Macintosh Plus. A single 5MB or even 10MB hard drive will likely not meet the storage needs of most users, resulting in the need for an expansion card that can provide additional storage capabilities. The Sapient dual-port parallel card fits the bill nicely, providing 100% compatibility with the original Apple card while using a combination of new and NOS (new old stock) components for added piece of mind.</p>
     </div>
+    <br>
 </div>
 
 Like the original Apple dual-port parallel card, the Sapient card provides two DB-25 parallel interfaces for connecting devices to the system:
 
 <figure>
-  <img src="/assets/images/2018-02-02-sapient-motherboard/orig_vs_sapient2_800.png" alt="side by side"/>
-  <figcaption>An original Apple parallel port card compared to a Sapient Technologies parallel card.</figcaption>
+  <img src="/assets/images/2018-03-23-sapient-parallel/orig_vs_sapient2_800.png" alt="side by side"/>
+  <figcaption>An original Apple parallel port card compared to a Sapient Technologies parallel card. </figcaption>
 </figure>
 
-<add more??>
+John Woodall at VintageMicros hand-builds every parallel card that goes out the door. The build quality is second to none, and each card is warrantied. 
 
 # Installation
 
@@ -74,12 +76,12 @@ The parallel card is ready for use out of the box and does not require drivers. 
 When I first acquired this card I set out to verify that it supported a dual ProFile setup like the original Apple card it replaced. I wasn't surprised to find that it worked as expected with no errors or hiccups encountered. The card worked great with two 5MB Apple ProFile hard disks in both MacWorks and the Lisa Office System, and didn't skip a beat when I formatted one for use as the ```/usr``` partition for a Microsoft Xenix 3.0 setup.  
 
 <figure>
-  <img src="/assets/images/2018-02-02-sapient-motherboard/macworks.png" alt="macworks"/>
+  <img src="/assets/images/2018-03-23-sapient-parallel/macworks.png" alt="macworks"/>
   <figcaption>Two Apple ProFile drives mounted in Macworks running System 6</figcaption>
 </figure>
 
 <figure>
-  <img src="/assets/images/2018-02-02-sapient-motherboard/los.png" alt="side by side"/>
+  <img src="/assets/images/2018-03-23-sapient-parallel/los.png" alt="side by side"/>
   <figcaption>Two Apple ProFile drives mounted in the Lisa Office System version 3.0</figcaption>
 </figure>
 
