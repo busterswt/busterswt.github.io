@@ -80,13 +80,13 @@ When I first acquired this card I set out to verify that it supported a dual Pro
   <img src="/assets/images/2018-03-23-sapient-parallel/macworks.png" alt="macworks"/>
 </figure>
 <br>
-  <figcaption>Two Apple ProFile drives mounted in Macworks running System 6</figcaption>
+  <figcaption>Pictured above: Two Apple ProFile drives mounted in Macworks running System 6.</figcaption>
   
 <figure>
   <img src="/assets/images/2018-03-23-sapient-parallel/los.png" alt="side by side"/>
 </figure>
 <br>
-  <figcaption>Two Apple ProFile drives mounted in the Lisa Office System version 3.0. The floppy cable is connected to a FloppyEmu (not pictured).</figcaption>
+  <figcaption>Pictured above: The same two Apple ProFile drives mounted in the Lisa Office System version 3.0. The floppy cable is connected to a FloppyEmu (not pictured). The ProFile drives are connected to the Sapient Technologies dual-port parallel card.</figcaption>
 
 # Summary
 Like many other components for the Apple Lisa, original parallel interface cards can fetch high prices thanks to their *vintageness* rather than their actual operating status. While not as prone to failure as a motherboard or I/O card might be, buying an original parallel interface from eBay or other unknown source can be an expensive gamble. The dual-port parallel interface card from Sapient Technologies is great alternative to the original while providing the same functionality, expansion capabilities, and compatibility. 
