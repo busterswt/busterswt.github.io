@@ -634,7 +634,7 @@ First, the node(s) must be bootstrapped:
 
 When `UPGRADE_KERNEL` is true, the host may reboot. If this happens, just rerun the playbook again. When the Contrail nodes are not the deploy host, the playbooks have a timer that waits for the host(s) to return.
 
-Next, run the `install_contrail.yml` to deploy OpenContrail:
+Next, run the `install_contrail.yml` playbook to deploy OpenContrail:
 
 ```
 # cd /opt/openstack-ansible/playbooks/
@@ -643,7 +643,7 @@ Next, run the `install_contrail.yml` to deploy OpenContrail:
 
 ## Install additional components
 
-Because the Juniper playbooks expect a Kolla-based deployment, some of the components are not installed on top of our OpenStack-Ansible based cloud. I've taken the liberty of extracting some utilities, modules, and more from Docker containers and wrote some playbooks to lay those down:
+Because the Juniper playbooks expect a Kolla-based deployment, some of the components are not installed on top of our OpenStack-Ansible based cloud. I've taken the liberty of extracting some utilities, modules, and more from Docker containers and wrote a playbook to lay those down:
 
 ```
 # cd /opt/openstack-ansible/playbooks/
@@ -652,7 +652,7 @@ Because the Juniper playbooks expect a Kolla-based deployment, some of the compo
 
 ## Reboot
 
-Once OpenContrail and been deployed and the vRouter kernel module compiled and inserted, it may be necessary to reboot the host to clear up some issues encounted inside the vRouter agent container, including:
+Once OpenContrail has been deployed and the vRouter kernel module compiled and inserted, it may be necessary to reboot the host to clear up some issues encounted inside the vRouter agent container, including:
 
 ```
 contrail-vrouter-agent: controller/src/vnsw/agent/vrouter/ksync/ksync_memory.cc:107: void KSyncMemory::Mmap(bool): Assertion `0' failed.
