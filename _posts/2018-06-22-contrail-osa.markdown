@@ -80,7 +80,7 @@ Whether all of these role changes were necessary remains to be seen, but they're
 ### os_neutron
 
 Some new files include:
-
+{% raw %}
 ```
 root@aio1:/etc/ansible/roles/os_neutron# git diff --staged
 diff --git a/tasks/providers/opencontrail_config.yml b/tasks/providers/opencontrail_config.yml
@@ -218,9 +218,9 @@ index 0000000..9d645b0
 +region_name = {{ keystone_service_region }}
 +{% endif %}
 ```
-
+{% endraw %}
 Changes to existing files include:
-
+{% raw %}
 ```
 root@aio1:/etc/ansible/roles/os_neutron# git diff
 diff --git a/defaults/main.yml b/defaults/main.yml
@@ -318,7 +318,7 @@ index a246a45..24e57ea 100644
    - "git+{{ neutron_git_repo }}@{{ neutron_git_install_branch }}#egg=neutron"
    - "git+{{ neutron_fwaas_git_repo }}@{{ neutron_fwaas_git_install_branch }}#egg=neutron-fwaas"
 ```
-
+{% endraw %}
 ### os_nova
 
 ```
@@ -342,7 +342,7 @@ index 67d92e9..bc44511 100644
 ### HAproxy changes
 
 In order to provide a single TF API and dashboard endpoint, I made a decision to create a VIP that would balance traffic amongst the TF API and analytics services. Whether this is best practice remains to be seen, but the changes to `group_vars` that facilitate VIP creation are here:
-
+{% raw %}
 ```
 root@aio1:/opt/openstack-ansible# git diff
 diff --git a/inventory/group_vars/haproxy/haproxy.yml b/inventory/group_vars/haproxy/haproxy.yml
@@ -382,7 +382,7 @@ index b837443..dc53ef4 100644
 +      haproxy_whitelist_networks: "{{ haproxy_opencontrail_whitelist_networks }}"
 +      haproxy_service_enabled: "{{ neutron_plugin_type == 'opencontrail' }}"
 ```
-
+{% endraw %}
 Some issues I ran into with this approach on an all-in-one include the ability for HAproxy to bind the VIP to port 8081. Turns out that later on in the process, the Contrail playbooks create a listener on 0.0.0.0:8081 that keeps the VIP from binding on the same port. An alternative here would be to comment out that service, or disable it once HAproxy is deployed. For a multi-node installation where HAproxy is on a different node, it can remain. Load balancing these two services may not work out in the end, but I'll leave it for now.
 
 
@@ -475,7 +475,7 @@ opencontrail_plugin_git_install_branch: R5.0
 ```
 
 Some defaults specified in the role include:
-
+{% raw %}
 ```
 opencontrail_api_vip_address: "{{ external_lb_vip_address }}"
 opencontrail_api_vip_port: "8082"
@@ -485,7 +485,7 @@ opencontrail_plugin_git_repo: https://github.com/Juniper/contrail-neutron-plugin
 opencontrail_plugin_git_install_branch: master
 neutron_opencontrail_conf_ini_overrides: {}
 ```
-
+{% endraw %}
 The final requirements are yet to be determined.
 
 ## Running the OpenStack-Ansible playbooks
