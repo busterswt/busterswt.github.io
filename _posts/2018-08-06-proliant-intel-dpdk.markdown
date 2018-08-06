@@ -35,17 +35,7 @@ My goal at the start of this effort was simple: Figure out what was needed to su
 
 The following hardware was used:
 
-```
-HP Proliant DL360e G8 - 4x LFF Slots
-1x 2TB Hitachi 7200rpm SATA Drive
-96GB RAM
-Intel X520 2-port 10-Gigabit Ethernet Network Card
-Ubuntu 16.04 LTS Operating System
-```
-
-The NIC in question is an Intel X520 82599ES-based 2x10G Network Interface Card that operates in a PCI 2.0 or 3.0 slot. This one in particular has 2x SFP+ interfaces using non-Intel SFP+ modules, mainly because they're all I have. The card is non-OEM, which means there are no readily-available ROM updates available, especially from HP. ROM updates aren't needed here, but it's worth pointing out since many folks often turn to firmware and drivers when things don't work as we think they should.
 
 # Summary
 
-The instructions in this guide may not apply only to network interface cards, but also other methods of PCI passthrough using GPUs and other hardware. In my testing, I was able to spin up VMs with the OpenStack API and have them connected to the integration bridge using `dpdkvhostuserclient` ports. I successfully verified connectivity to the VMs from an upstream router. I look forward to kicking the tires on this configuration and performing some benchmarking to see just how much more performance can be squeezed out of the network. If you have any suggestions or feedback, I'm all ears! Hit me up on Twitter at @jimmdenton. 
-
+The instructions in this guide may not apply only to network interface cards, but also other methods of PCI passthrough using GPUs and other hardware. In my testing, I was able to spin up VMs with the OpenStack API and have them connected to the integration bridge using `dpdkvhostuserclient` ports. I successfully verified connectivity to the VMs from an upstream router. I look forward to kicking the tires on this configuration and performing some benchmarking to see just how much more performance can be squeezed out of the network. If you have any suggestions or feedback, I'm all ears! 
