@@ -246,6 +246,7 @@ Amongst the PCI data returned you will find the information pertaining to the NI
 	Kernel driver in use: vfio-pci
 	Kernel modules: ixgbe
 ```
+
 Within the output, the physical slot is easily identified. On my machine, this card is installed in Slot 2:
 
 ```
