@@ -82,18 +82,6 @@ The `ovs-vsctl show` output further demonstrates the error:
     ovs_version: "2.9.0"
 ```
 
-When attempting to add the port, an error was logged in `dmesg` that seemed rather ominous:
-
-```
-[  708.044615] vfio-pci 0000:03:00.0: Device is ineligible for IOMMU domain attach due to platform RMRR requirement.  Contact your platform vendor.
-```
-
-Some searching turned up some excellent, albeit confusing, resources on the error:
-
-- [https://access.redhat.com/sites/default/files/attachments/rmrr-wp1.pdf](https://access.redhat.com/sites/default/files/attachments/rmrr-wp1.pdf)
-- [https://support.hpe.com/hpsc/doc/public/display?docId=emr_na-c04781229&sp4ts.oid=5249566](https://support.hpe.com/hpsc/doc/public/display?docId=emr_na-c04781229&sp4ts.oid=5249566)
-
-The TL;DR here is that current Linux kernels (3.16+) no longer allow assignment of devices associated with VT-d Reserved Memory Reporting Regions (RMRRs).  These regions are used by some platform vendors, including HP, for side-band communication between I/O devices and the management controller. These regions are incompatible with PCI device assignment and stops our attempt to use the NICs for DPDK dead in its tracks. This does not seem to impact SR-IOV, however.
 
 
 # Summary
