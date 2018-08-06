@@ -82,7 +82,9 @@ The `ovs-vsctl show` output further demonstrates the error:
 
 When attempting to add the port, an error was logged in `dmesg` that seemed rather ominous:
 
-`[  708.044615] vfio-pci 0000:03:00.0: Device is ineligible for IOMMU domain attach due to platform RMRR requirement.  Contact your platform vendor.`
+```
+[  708.044615] vfio-pci 0000:03:00.0: Device is ineligible for IOMMU domain attach due to platform RMRR requirement.  Contact your platform vendor.
+```
 
 Some searching turned up some excellent, albeit confusing, resources on the error:
 
@@ -110,6 +112,7 @@ curl http://downloads.linux.hpe.com/SDR/hpePublicKey2048_key1.pub | apt-key add 
 apt update
 apt install hp-scripting-tools
 ```
+
 Once the utilities are installed, a special file should be downloaded from HP that contains the `conrep` configuration information for managing individual PCI slots:
 
 ```
@@ -120,6 +123,7 @@ Next, identify the **physical slot** that the NIC is plugged in to using the `ls
 ```
 lspci -vvv
 ```
+
 Amongst the PCI data returned you will find the information pertaining to the NIC in question. On my machine, the NIC can be identified by bus address `03:00.x`:
 
 ```
@@ -247,6 +251,7 @@ Within the output, the physical slot is easily identified. On my machine, this c
 ```
 Physical Slot: 2
 ```
+
 The documentation is confusing and may lead one to believe the bus address is needed here. However, that is not the case. Armed with this information, you can now exclude the slot from RMRR by creating the following file and replacing `X` in `RMRDS_SlotX` with the physical slot number as shown here:
 
 ```
@@ -254,6 +259,7 @@ cat <<EOF > exclude.dat
 <Conrep> <Section name="RMRDS_Slot2" helptext=".">Endpoints_Excluded</Section> </Conrep>
 EOF
 ```
+
 Now, run `conrep` to update the BIOS accordingly:
 
 ```
@@ -285,6 +291,7 @@ To verify, run the following command:
 ```
 conrep -s -x conrep_rmrds.xml -f verify.dat
 ```
+
 Read the `verify.dat` file to ensure the slot is excluded:
 
 ```
@@ -309,8 +316,8 @@ root@aio1:~# cat verify.dat
   <Section name="RMRDS_Slot15" helptext=".">Endpoints_Included</Section>
   <Section name="RMRDS_Slot16" helptext=".">Endpoints_Included</Section>
 </Conrep>
-
 ```
+
 Once the change has been made, reboot the system.
 
 # Trying again
@@ -333,11 +340,13 @@ Once the system is available, the output of `ovs-vsctl show` should look a littl
                 type: dpdk
                 options: {dpdk-devargs="0000:03:00.0"}
 ```
+
 If the port was previously removed, attempts to create the OVS port should prove successful:
 
 ```
 ovs-vsctl add-port br-provider dpdk-p0 -- set Interface dpdk-p0 type=dpdk options:dpdk-devargs=0000:03:00.0
 ```
+
 To verify traffic is traversing the interface, some special network plumbing will need to be constructed. After all, the 10G interface cannot be seen within the OS using tools like `ip` or `ifconfig`, let alone `tcpdump`. The quickest way to observe traffic on the `br-provider` bridge is to mirror all traffic on the bridge to another connected port. This is where veth interfaces come in handy.
 
 Create a veth pair using the following syntax:
@@ -377,6 +386,7 @@ listening on tap1, link-type EN10MB (Ethernet), capture size 262144 bytes
 11 packets received by filter
 0 packets dropped by kernel
 ```
+
 To disable the mirroring, simply run the following command and delete the veth pair:
 
 ```
@@ -384,8 +394,7 @@ ovs-vsctl clear bridge br-provider mirrors
 ip link delete tap0
 ```
 
-
-## Summary
+# Summary
 
 The instructions in this guide may not apply only to network interface cards, but also other methods of PCI passthrough using GPUs and other hardware. In my testing, I was able to spin up VMs with the OpenStack API and have them connected to the integration bridge using `dpdkvhostuserclient` ports. I successfully verified connectivity to the VMs from an upstream router. I look forward to kicking the tires on this configuration and performing some benchmarking to see just how much more performance can be squeezed out of the network. If you have any suggestions or feedback, I'm all ears! Hit me up on Twitter at @jimmdenton. 
 
