@@ -61,23 +61,23 @@ The command above creates a port named `dpdk-p0` of type `dpdk`, associates it w
 The `ovs-vsctl show` output further demonstrates the error:
 
 ~~~
-    Bridge br-provider
-        Controller "tcp:127.0.0.1:6633"
-            is_connected: true
-        fail_mode: secure
-        Port br-provider
-            Interface br-provider
-                type: internal
-        Port "dpdk-p0"
-            Interface "dpdk-p0"
-                type: dpdk
-                options: {dpdk-devargs="0000:03:00.0"}
-                error: "Error attaching device '0000:03:00.0' to DPDK"
-        Port phy-br-provider
-            Interface phy-br-provider
-                type: patch
-                options: {peer=int-br-provider}
-    ovs_version: "2.9.0"
+Bridge br-provider
+    Controller "tcp:127.0.0.1:6633"
+        is_connected: true
+    fail_mode: secure
+    Port br-provider
+        Interface br-provider
+            type: internal
+    Port "dpdk-p0"
+        Interface "dpdk-p0"
+            type: dpdk
+            options: {dpdk-devargs="0000:03:00.0"}
+            error: "Error attaching device '0000:03:00.0' to DPDK"
+    Port phy-br-provider
+        Interface phy-br-provider
+            type: patch
+            options: {peer=int-br-provider}
+ovs_version: "2.9.0"
 ~~~
 
 When attempting to add the port, an error was logged in `dmesg` that seemed rather ominous:
@@ -329,21 +329,21 @@ Once the change has been made, reboot the system.
 Once the system is available, the output of `ovs-vsctl show` should look a little less... error-ish:
 
 ~~~
-    Bridge br-provider
-        Controller "tcp:127.0.0.1:6633"
-            is_connected: true
-        fail_mode: secure
-        Port br-provider
-            Interface br-provider
-                type: internal
-        Port phy-br-provider
-            Interface phy-br-provider
-                type: patch
-                options: {peer=int-br-provider}
-        Port "dpdk-p0"
-            Interface "dpdk-p0"
-                type: dpdk
-                options: {dpdk-devargs="0000:03:00.0"}
+Bridge br-provider
+    Controller "tcp:127.0.0.1:6633"
+        is_connected: true
+    fail_mode: secure
+    Port br-provider
+        Interface br-provider
+            type: internal
+    Port phy-br-provider
+        Interface phy-br-provider
+            type: patch
+            options: {peer=int-br-provider}
+    Port "dpdk-p0"
+        Interface "dpdk-p0"
+            type: dpdk
+            options: {dpdk-devargs="0000:03:00.0"}
 ~~~
 
 If the port was previously removed, attempts to create the OVS port should prove successful:
