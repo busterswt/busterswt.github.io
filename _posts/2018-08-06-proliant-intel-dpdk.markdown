@@ -118,6 +118,7 @@ Once the utilities are installed, a special file should be downloaded from HP th
 ```
 wget -O conrep_rmrds.xml https://downloads.hpe.com/pub/softlib2/software1/pubsw-linux/p1472592088/v95853/conrep_rmrds.xml
 ```
+
 Next, identify the **physical slot** that the NIC is plugged in to using the `lspci` command shown here:
 
 ```
@@ -266,6 +267,7 @@ Now, run `conrep` to update the BIOS accordingly:
 ```
 conrep -l -x conrep_rmrds.xml -f exclude.dat
 ```
+
 The output will resemble the following:
 
 ```
@@ -285,8 +287,8 @@ Hardware   Configuration: exclude.dat
 Loading configuration data from exclude.dat
 
 Conrep Return Code: 0
-
 ```
+
 To verify, run the following command:
 
 ```
