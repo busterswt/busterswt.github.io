@@ -32,6 +32,7 @@ I can't do it justice here, but there are many good resources on DPDK and its ad
 My goal at the start of this effort was simple: Figure out what was needed to supplement the existing Open vSwitch deployment mechanism in OpenStack-Ansible to support DPDK. I opened up a [bug](https://bugs.launchpad.net/openstack-ansible/+bug/1784660) and away I went.
 
 # Getting started
+
 The following hardware was used:
 
 ```
@@ -47,6 +48,7 @@ The NIC in question is an Intel X520 82599ES-based 2x10G Network Interface Card 
 To support DPDK, the `VT-d` and/or `VT-x` extensions must be enabled in the BIOS.
 
 # Configuring OVS
+
 Over time, some of the popular operating systems have made configuring DPDK and DPDK-enabled Open vSwitch a much easier task. This includes providing packages such as `dpdk` and `openvswitch-switch-dpdk` that take the burden off the operator to compile support for DPDK into Open vSwitch and also figure out how to make persistent DPDK and hugepage configurations. Upcoming patches to OpenStack-Ansible should include support for installing and configuring DPDK-enabled Open vSwitch as well as configuring the host to support DPDK. OpenStack Neutron will also be configured to support such functionality. For now, these instructions assume that OVS has been installed, hugepages have been configured, and everything is ready to go.
 
 While iterating on these patches, I ran into an issue when adding a physical interface to an Open vSwitch bridge using the following command:
@@ -282,7 +284,7 @@ conrep 5.2.0.0 - HPE Scripting Toolkit Configuration Replication Program
 
 XML System Configuration: conrep_rmrds.xml
 Hardware   Configuration: exclude.dat
-	Global Restriction: [3.40                            ]                  OK
+	Global Restriction: [3.40          ]     OK
 
 Loading configuration data from exclude.dat
 
@@ -324,6 +326,7 @@ root@aio1:~# cat verify.dat
 Once the change has been made, reboot the system.
 
 # Trying again
+
 Once the system is available, the output of `ovs-vsctl show` should look a little less... error-ish:
 
 ```
