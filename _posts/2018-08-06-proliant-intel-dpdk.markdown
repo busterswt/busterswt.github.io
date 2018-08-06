@@ -45,45 +45,6 @@ Ubuntu 16.04 LTS Operating System
 
 The NIC in question is an Intel X520 82599ES-based 2x10G Network Interface Card that operates in a PCI 2.0 or 3.0 slot. This one in particular has 2x SFP+ interfaces using non-Intel SFP+ modules, mainly because they're all I have. The card is non-OEM, which means there are no readily-available ROM updates available, especially from HP. ROM updates aren't needed here, but it's worth pointing out since many folks often turn to firmware and drivers when things don't work as we think they should.
 
-To support DPDK, the `VT-d` and/or `VT-x` extensions must be enabled in the BIOS.
-
-# Configuring OVS
-
-Over time, some of the popular operating systems have made configuring DPDK and DPDK-enabled Open vSwitch a much easier task. This includes providing packages such as `dpdk` and `openvswitch-switch-dpdk` that take the burden off the operator to compile support for DPDK into Open vSwitch and also figure out how to make persistent DPDK and hugepage configurations. Upcoming patches to OpenStack-Ansible should include support for installing and configuring DPDK-enabled Open vSwitch as well as configuring the host to support DPDK. OpenStack Neutron will also be configured to support such functionality. For now, these instructions assume that OVS has been installed, hugepages have been configured, and everything is ready to go.
-
-While iterating on these patches, I ran into an issue when adding a physical interface to an Open vSwitch bridge using the following command:
-
-```
-# ovs-vsctl add-port br-provider dpdk-p0 -- set Interface dpdk-p0 type=dpdk options:dpdk-devargs=0000:03:00.0
-ovs-vsctl: Error detected while setting up 'dpdk-p0': Error attaching device '0000:03:00.0' to DPDK.  See ovs-vswitchd log for details.
-```
-
-The command above creates a port named `dpdk-p0` of type `dpdk`, associates it with the NIC port at PCI address `0000:03:00.0`, and connects it to the bridge named `br-provider`. In this case, `br-provider` is used as the OpenStack Neutron provider bridge and is connected to the integration bridge just like a normal Open vSwitch deployment (sans DPDK).
-
-The `ovs-vsctl show` output further demonstrates the error:
-
-```
-    Bridge br-provider
-        Controller "tcp:127.0.0.1:6633"
-            is_connected: true
-        fail_mode: secure
-        Port br-provider
-            Interface br-provider
-                type: internal
-        Port "dpdk-p0"
-            Interface "dpdk-p0"
-                type: dpdk
-                options: {dpdk-devargs="0000:03:00.0"}
-                error: "Error attaching device '0000:03:00.0' to DPDK"
-        Port phy-br-provider
-            Interface phy-br-provider
-                type: patch
-                options: {peer=int-br-provider}
-    ovs_version: "2.9.0"
-```
-
-
-
 # Summary
 
 The instructions in this guide may not apply only to network interface cards, but also other methods of PCI passthrough using GPUs and other hardware. In my testing, I was able to spin up VMs with the OpenStack API and have them connected to the integration bridge using `dpdkvhostuserclient` ports. I successfully verified connectivity to the VMs from an upstream router. I look forward to kicking the tires on this configuration and performing some benchmarking to see just how much more performance can be squeezed out of the network. If you have any suggestions or feedback, I'm all ears! Hit me up on Twitter at @jimmdenton. 
