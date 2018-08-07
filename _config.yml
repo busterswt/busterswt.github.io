@@ -11,7 +11,7 @@ description: A blog about cloud and networking and other related things
 # if it's an external image, update below for true
 # better with square images
 external-image: false
-picture: assets/images/profile.jpg
+picture: 'assets/images/profile.jpg'
 
 url: http://www.jimmdenton.com
 permalink: /:title/
@@ -102,5 +102,4 @@ gems:
 jekyll-mentions:
     base_url: https://github.com
 
-kramdown:
-  input: GFM
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, indigo-gh-pages.zip, Rakefile, screen-shot.png, travis.sh, tasks]
