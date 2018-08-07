@@ -10,6 +10,7 @@ tag:
 - lisa
 - vintage
 - motherboard
+category: blog
 blog: true
 author: jamesdenton
 description: Hands-on with the Sapient Technologies motherboard for the Apple Lisa

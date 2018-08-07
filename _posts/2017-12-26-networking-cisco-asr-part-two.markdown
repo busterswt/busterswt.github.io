@@ -13,6 +13,7 @@ tag:
 - openstack
 - ocata
 - router
+category: blog
 blog: true
 author: jamesdenton
 description: Using the Cisco ASR1k Router Service Plugin in OpenStack - Part Two

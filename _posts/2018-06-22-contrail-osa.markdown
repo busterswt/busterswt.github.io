@@ -11,6 +11,7 @@ tag:
 - contrail
 - opencontrail
 - tungstenfabric
+category: blog
 blog: true
 author: jamesdenton
 description: Integrating Tungsten Fabric (OpenContrail) with OpenStack-Ansible

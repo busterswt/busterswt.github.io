@@ -13,6 +13,7 @@ tag:
 - vlan
 - tagging
 - newton
+category: blog
 blog: true
 star: false
 author: jamesdenton

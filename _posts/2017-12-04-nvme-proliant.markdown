@@ -13,6 +13,7 @@ tag:
 - dl360e
 - ubuntu
 - openstack-ansible
+category: blog
 blog: true
 author: jamesdenton
 description: Using an NVMe to PCIe adapter in an HP Proliant DL360e G8

@@ -10,6 +10,7 @@ tag:
 - lisa
 - vintage
 - storage
+category: blog
 blog: true
 author: jamesdenton
 description: A look at the X/ProFile storage adapter for the vintage Apple Lisa

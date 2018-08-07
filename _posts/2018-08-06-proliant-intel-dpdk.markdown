@@ -2,7 +2,7 @@
 title: "DPDK and RMRR Compatibility Issues on the HP Proliant DL360e G8"
 layout: post
 date: 2018-08-06
-image: assets/images/2018-08-06-proliant-intel-dpdk/detour.png
+image: /assets/images/2018-08-06-proliant-intel-dpdk/detour.png
 headerImage: true
 tag:
 - blog
@@ -14,6 +14,7 @@ tag:
 - dl360e
 - ubuntu
 - openstack-ansible
+category: blog
 blog: true
 author: jamesdenton
 description: "Describing DPDK and RMRR Compatibility Issues on the HP Proliant DL360e G8"

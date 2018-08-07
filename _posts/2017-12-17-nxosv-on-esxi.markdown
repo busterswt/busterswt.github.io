@@ -12,6 +12,7 @@ tag:
 - openstack
 - esxi
 - switch
+category: blog
 blog: true
 author: jamesdenton
 description: Installing the Cisco NX-OSv on VMWare ESXi 6.5

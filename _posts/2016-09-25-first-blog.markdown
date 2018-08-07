@@ -7,6 +7,7 @@ headerImage: false
 tag:
 - blog
 - general
+category: blog
 blog: true
 author: jamesdenton
 description: First blog. Nothing to see here.
