@@ -2,7 +2,7 @@
 title: "DPDK and RMRR Compatibility Issues on the HP Proliant DL360e G8"
 layout: post
 date: 2018-08-06
-image: /assets/images/2018-08-06-proliant-intel-dpdk/detour.png
+image: assets/images/2018-08-06-proliant-intel-dpdk/detour.png
 headerImage: true
 tag:
 - blog
@@ -16,7 +16,7 @@ tag:
 - openstack-ansible
 blog: true
 author: jamesdenton
-description: DPDK and RMRR Compatibility Issues on the HP Proliant DL360e G8
+description: "Describing DPDK and RMRR Compatibility Issues on the HP Proliant DL360e G8"
 ---
 
 Earlier this year I made it a goal to spend more time on network virtualization technologies and software-defined networking, and have recently found myself attempting to build out an OpenStack environment using the Open vSwitch ML2 mechanism driver with support for DPDK.
