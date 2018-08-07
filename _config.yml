@@ -101,3 +101,6 @@ gems:
 
 jekyll-mentions:
     base_url: https://github.com
+
+kramdown:
+  input: GFM
