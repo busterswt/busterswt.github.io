@@ -5,7 +5,6 @@ date: 2018-08-06
 image: /assets/images/2018-08-06-proliant-intel-dpdk/detour.png
 headerImage: true
 tag:
-- blog
 - neutron
 - ovs
 - dpdk
@@ -13,6 +12,7 @@ tag:
 - proliant
 - dl360e
 - ubuntu
+- rmrr
 - openstack-ansible
 category: blog
 blog: true
