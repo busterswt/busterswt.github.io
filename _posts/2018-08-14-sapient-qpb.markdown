@@ -11,7 +11,7 @@ tag:
 - motherboard
 category: blog
 blog: true
-published: false
+published: true
 author: jamesdenton
 description: Hands-on with the Sapient Technologies quad-port serial expansion card for the Apple Lisa
 
@@ -31,20 +31,13 @@ Thanks to Sapient Technologies, this unique and somewhat unobtainium expansion c
 # The card
 The Quad-Port Serial Expansion Board, or QPB, offers a total of four serial interfaces that can be used to connect the Lisa to different terminals or terminal emulators, as well as serial printers and modems, within a supported operating system. 
 
-<div class="side-by-side">
-<div class="toleft">
-<p>Two external RS232 DB25 serial interfaces can be connected to modern systems and peripherals using cables and adapters. The card also includes two internal headers that can be exposed using DB25-to-ribbon cable adapters that are provided with the card.
-</p>
-</div>   
-<div class="toright">
-<center><img class="image" src="/assets/images/2018-08-14-sapient-qpb/serialcard.png" alt="Cards installed"></center>
-<figcaption class="caption">The Sapient Technologies Quad-Port Serial Expansion Card for the Apple Lisa</figcaption>
-</div>
-<br>
+![Serial Card](/assets/images/2018-08-14-sapient-qpb/serialcard.png)
+
+Two external RS232 DB25 serial interfaces can be connected to modern systems and peripherals using cables and adapters. The card also includes two internal headers that can be exposed using DB25-to-ribbon cable adapters that are provided with the card.
 
 Using a USB-to-serial adapter, users can connect modern systems to the Lisa as terminal emulators, which allows them to login and interface with the operating system running on the Lisa as if they were seated at the console:
 
-![Z-Term MacOS](/assets/images/2018-08-14-sapient-qpb/serialcard.png)
+![Z-Term MacOS](/assets/images/2018-08-14-sapient-qpb/ztermmac.png)
 
 Or, users can adopt a fully-retro setup and connect using vintage systems, like the Macintosh 128k, using adapters provided by VintageMicros:
 
