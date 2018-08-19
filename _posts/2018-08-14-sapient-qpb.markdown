@@ -24,9 +24,9 @@ The Lisa computer holds a special place in Apple lore and in the hearts of enthu
 
 So, when I found out that a quad-port serial expansion card was in the works I had to know more. John Woodall from VintageMicros explained that the new quad-port board, or QPB, was "part of a two-year effort to build a modernized version of a serial card for the Apple Lisa that was manufactured and sold by Tecmar[^1]." Todd Meyer of Sapient Technologies funded the endeavor with help from the following Lisa experts and enthusiasts as part of the **Lisa Hardware Preservation Project**:
 
-- James MacPhail | Design Engineering
-- Rick Ragnini | Quality Engineering and Testing
-- John Woodall | Assembly and Testing
+- James MacPhail -- Design Engineering
+- Rick Ragnini -- Quality Engineering and Testing
+- John Woodall -- Assembly and Testing
 
 The original quad-port serial expansion card was to be used with the Microsoft/SCO XENIX operating system and later, UniSoft's UniPlus+ UNIX, rather than the Lisa Office System. I was intrigued.
 
@@ -36,14 +36,14 @@ After talking with John, I spent a few months putting together a guide for the c
 
 At the time of its release, UNIX had been around for over a decade and was mostly used on large mainframes and minicomputers like the PDP and VAX series of machines. In the early 80's, as microcomputers became more powerful, you could find vendors porting UNIX and UNIX-based operating systems like XENIX to less-expensive systems like the Apple Lisa and other 68000 or 8086-based systems, among others.
 
-Thanks to Sapient Technologies, this fresh look on a unique and difficult-to-obtain expansion card has been made available to the Lisa community. But how would one use it? 
+Thanks to Sapient Technologies, this fresh look on a unique and difficult-to-obtain expansion card has been made available to the Lisa community.
 
 [^1]: Tecmar was a computer peripheral company that created products for many different systems and platforms in the 1980s and early 1990s. 
 
 
 # The card
 
-The process of building a new card based on the Tecmar card began in 2016. The original PCB was duplicated and tested with modern components, then optimized for function, form factor, and performance by a design engineer who knows a thing or two about Lisa hardware. A new PCB was fabricated and a prototype built. Hundreds of man hours in development, testing, building and writing resulted in a final product two years later.  
+The process of building a new card based on the Tecmar card began in 2016. The original PCB was duplicated and tested with modern components, then optimized for function, form factor, and performance by a design engineer who knows a thing or two about Lisa hardware. A new PCB was fabricated and a prototype built. Many hours of development, testing, building and writing resulted in a final product two years later.  
 
 Within a supported operating system like UNIX or XENIX, the Quad-Port Serial Expansion Board, or QPB, offers a total of four serial interfaces that can be used to connect the Lisa to different terminals or terminal emulators as well as serial printers and modems.
 
@@ -99,7 +99,7 @@ Other original games from BSD UNIX can be found on the Internet, including [here
 
 Using UNIX-based operating systems on the Apple Lisa is a real treat, and further demonstrates the Lisa's flexibility and the backwards compatibility of modern UNIX-based operating systems. The Quad-Port Serial Expansion Board enables the Lisa to act as a communications hub for up to four directly-connected hosts, and users can interact many more using an intermediate device like a Raspberry Pi to route UUCP over the Internet.
 
-Both operating systems are available on Bitsavers, but the installation process is a bit nuanced. The pre-installed operating systems allow users to immediately enjoy peek into the past. The pre-POSIX C compiler included with UniPlus+ UNIX even allows ambitious users to develop applications. XENIX development tools are not included but can be installed.
+Both operating systems are available on Bitsavers, but the installation process is a bit nuanced. The pre-installed operating systems allow users to immediately enjoy a peek into the past. The pre-POSIX C compiler included with UniPlus+ UNIX even allows ambitious users to develop applications. The UniPlus+ Development Guide provides information on included libraries. XENIX development tools are not included but can be installed.
 
 Without the diligence of the software and hardware experts in the Lisa community, both XENIX and UNIX for the Apple Lisa as well as the quad-port serial expansion board would have been lost to time. Thank you!
 
