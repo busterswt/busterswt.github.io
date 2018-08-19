@@ -28,13 +28,11 @@ So, when I found out that a quad-port serial expansion card was in the works I h
 - Rick Ragnini -- Quality Engineering and Testing
 - John Woodall -- Assembly and Testing
 
-The original quad-port serial expansion card was to be used with the Microsoft/SCO XENIX operating system and later, UniSoft's UniPlus+ UNIX, rather than the Lisa Office System. I was intrigued.
+The original quad-port serial expansion card was to be used with the Microsoft/SCO XENIX operating system and later, UniSoft's UniPlus+ UNIX, rather than the Lisa Office System. At the time of its release, UNIX had been around for over a decade and was mostly used on large mainframes and minicomputers like the PDP and VAX series of machines. In the early 80's, as microcomputers became more powerful, you could find vendors porting UNIX and UNIX-based operating systems like XENIX to less-expensive systems like the Apple Lisa and other 68000 or 8086-based systems, among others. Needless to say, I was intrigued.
 
 After talking with John, I spent a few months putting together a guide for the card. This exercise involved installing both Microsoft XENIX 3.0 and UniSoft UniPlus+ UNIX V and working out the post-installation kinks. The guide quickly balooned to over 100 pages and includes information on basic administrative tasks, printing, and more, within the XENIX and UNIX operating systems. It even includes information on interfacing with terminal emulators running on new and vintage Macs and PCs running Windows. Instructions for configuring UUCP on High Sierra are included for those willing to walk on the wild side. 
 
 ![Hub](/assets/images/2018-08-14-sapient-qpb/hub.png)
-
-At the time of its release, UNIX had been around for over a decade and was mostly used on large mainframes and minicomputers like the PDP and VAX series of machines. In the early 80's, as microcomputers became more powerful, you could find vendors porting UNIX and UNIX-based operating systems like XENIX to less-expensive systems like the Apple Lisa and other 68000 or 8086-based systems, among others.
 
 Thanks to Sapient Technologies, this fresh look on a unique and difficult-to-obtain expansion card has been made available to the Lisa community.
 
