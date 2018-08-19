@@ -42,9 +42,12 @@ Thanks to Sapient Technologies, this fresh look on a unique and difficult-to-obt
 
 
 # The card
+
+The process of building a new card based on the Tecmar card began in 2016. The original PCB was duplicated and tested with modern components, then optimized for function, form factor, and performance by a design engineer who knows a thing or two about Lisa hardware. A new PCB was fabricated and a prototype built. Hundreds of man hours in development, testing, building and writing resulted in a final product two years later.  
+
 Within a supported operating system like UNIX or XENIX, the Quad-Port Serial Expansion Board, or QPB, offers a total of four serial interfaces that can be used to connect the Lisa to different terminals or terminal emulators as well as serial printers and modems.
 
-![Serial Card](/assets/images/2018-08-14-sapient-qpb/serialcard.png)
+![Serial Card](/assets/images/2018-08-14-sapient-qpb/serialcard.png) 
 
 Two external RS232 DB25 serial interfaces can be connected to other computers and peripherals using cables and adapters. The card also includes two internal headers that can be exposed using DB25-to-ribbon cable adapters that are provided with the card.
 
