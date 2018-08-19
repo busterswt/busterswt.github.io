@@ -26,7 +26,7 @@ So, when I found out that a quad-port serial expansion card was in the works I h
 
 - James MacPhail -- Design Engineering
 - Rick Ragnini -- Quality Engineering and Testing
-- John Woodall -- Assembly and Testing
+- John Woodall -- Parts Procurement, Assembly and Testing
 
 The original quad-port serial expansion card was to be used with the Microsoft/SCO XENIX operating system and later, UniSoft's UniPlus+ UNIX, rather than the Lisa Office System. At the time of its release, UNIX had been around for over a decade and was mostly used on large mainframes and minicomputers like the PDP and VAX series of machines. In the early 80's, as microcomputers became more powerful, you could find vendors porting UNIX and UNIX-based operating systems like XENIX to less-expensive systems like the Apple Lisa and other 68000 or 8086-based systems, among others. Needless to say, I was intrigued.
 
