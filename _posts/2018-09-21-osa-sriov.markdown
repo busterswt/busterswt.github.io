@@ -1,0 +1,381 @@
+---
+title: "Using SR-IOV with OpenStack Ansible"
+layout: post
+date: 2018-09-21
+image: /assets/images/2018-09-21-osa-sriov/fast.png
+headerImage: true
+tag:
+- neutron
+- sriov
+- openstack
+- openstack-ansible
+category: blog
+blog: true
+author: jamesdenton
+description: "Using SR-IOV with OpenStack Ansible"
+---
+
+SR-IOV is a specification that allows a PCIe device to appear to be multiple separate physical PCIe devices. A two-port NIC might be broken up into multiple physical functions (PF) with multiple virtual functions (VF) per physical function. Instead of attaching to a **tuntap** interface, a virtual machine instance can be connected to a virtual function and gain better performance and lower latency.
+
+<!--more-->
+Having first worked with SR-IOV between the Mitaka and Newton cycles of OpenStack, a recent troubleshooting effort really strained my brain, so to speak. As a result, I put together some steps necessary to deploy the SR-IOV agent and related configuration in an OpenStack environment deployed with OpenStack-Ansible.
+
+The upstream documentation for SR-IOV is a good starting point that can fill in the blanks:
+
+[https://docs.openstack.org/neutron/rocky/admin/config-sriov.html](https://docs.openstack.org/neutron/rocky/admin/config-sriov.html)
+
+# Getting started
+
+In this walkthrough, the following hardware/software was used:
+
+- HP Proliant DL360e G8
+- HP 530SFP+ NIC (QLogic/Broadcom NetXtreme II BCM57810)
+- Ubuntu 16.04 LTS Operating System
+- OpenStack Ansible (Rocky)
+
+In my environment, the NIC used for SR-IOV is an HP 530SFP+ 2x10G Network Interface Card based on the QLogic/Broadcom BCM57810 chipset. Many NICs, including those made by Intel, Mellanox, QLogic and others support SR-IOV. SR-IOV support can be determined using `lspci -s -vvv <pci bus id>`, where the `pci bus id` corresponds to the installed NIC, like so:
+
+```
+root@hp02-qlogic:~# lspci -vvv -s 0000:08:00.1
+08:00.1 Ethernet controller: Broadcom Corporation NetXtreme II BCM57810 10 Gigabit Ethernet (rev 10)
+	Subsystem: Hewlett-Packard Company Ethernet 10Gb 2-port 530SFP+ Adapter
+	Physical Slot: 1
+	...
+	Capabilities: [1b8 v1] Alternative Routing-ID Interpretation (ARI)
+		ARICap:	MFVC- ACS-, Next Function: 0
+		ARICtl:	MFVC- ACS-, Function Group: 0
+	Capabilities: [1c0 v1] Single Root I/O Virtualization (SR-IOV)
+		IOVCap:	Migration-, Interrupt Message Number: 000
+		IOVCtl:	Enable+ Migration- Interrupt- MSE+ ARIHierarchy-
+		IOVSta:	Migration-
+		Initial VFs: 64, Total VFs: 64, Number of VFs: 8, Function Dependency Link: 01
+		VF offset: 71, stride: 1, Device ID: 16af
+		Supported Page Size: 000005ff, System Page Size: 00000001
+		Region 0: Memory at 00000000f35f0000 (64-bit, prefetchable)
+		Region 4: Memory at 00000000f3570000 (64-bit, prefetchable)
+		VF Migration: offset: 00000000, BIR: 0
+	Capabilities: [220 v1] #15
+	Kernel driver in use: bnx2x
+	Kernel modules: bnx2x
+```
+
+The PCI Bus ID can be determined using the `ethtool` command shown here:
+
+```
+root@hp02-qlogic:~# ethtool -i ens2f1
+driver: bnx2x
+version: 1.712.30-0
+firmware-version: bc 7.14.62
+expansion-rom-version:
+bus-info: 0000:08:00.1  <---- PCI Bus ID
+supports-statistics: yes
+supports-test: yes
+supports-eeprom-access: yes
+supports-register-dump: yes
+supports-priv-flags: yes
+```
+
+To support SR-IOV, the `VT-d` and/or `VT-x` extensions must be enabled in the BIOS. If applicable, SR-IOV support must be enabled in the BIOS as well. In addition, you must enable IOMMU support at boot. To do so, edit the GRUB config and add the following kernel parameter:
+
+```
+intel_iommu=on
+```
+
+Run `update-grub` or equivalent for your operating system and reboot the machine.
+
+# Configuring overrides
+
+Neutron's SR-IOV implementation involves a mechanism driver and respective agent that runs on the compute nodes. It can co-exist with other ML2 drivers including Open vSwitch and LinuxBridge, the default for OpenStack-Ansible deployments. The type of port determines which agent is responsible for the plumbing: a `normal` port would be handled by the Open vSwitch or Linux Bridge agent, while a `direct` port will be handled by the SR-IOV agent. This detail isn't so important now, but will be when spinning up instances.
+
+To get started, take note of the name of the interface(s) to be used for SR-IOV. Update the `user_variables.yml` file at `/etc/openstack_deploy/user_variables.yml` and specify the following overrides to enable SR-IOV within OpenStack:
+
+```
+neutron_plugin_types:
+  - ml2.sriov
+
+nova_pci_passthrough_whitelist: '{ "physical_network":"<provider label>", "devname":"<interface>" }'
+```
+
+In my environment, the provider label is `vlan` (default for OSA) and the interface is `ens2f1`:
+
+```
+neutron_plugin_types:
+  - ml2.sriov
+
+nova_pci_passthrough_whitelist: '{ "physical_network":"vlan", "devname":"ens2f1" }'
+```  
+
+The whitelist can match on many other interface characteristics, including bus address, vendor id, and more. Refer to the documentation at [https://docs.openstack.org/openstack-ansible-os_neutron/latest/configure-network-services.html](https://docs.openstack.org/openstack-ansible-os_neutron/latest/configure-network-services.html) for other ways to match.
+
+OpenStack-Ansible can dynamically build provider mappings using information specified in the `provider_networks` block found in `openstack_user_config.yml`:
+
+```
+- network:
+    container_bridge: "br-vlan"
+    container_type: "veth"
+    container_interface: "eth11"
+    type: "vlan"
+    range: "101:200,301:400"
+    net_name: "vlan"
+    group_binds:
+      - neutron_openvswitch_agent
+```
+
+In this example, a provider label named `vlan` will be constructed and mapped to the `br-vlan` bridge. The `br-vlan` bridge may exist as a Linux bridge or a vSwitch when the OVS driver is used. The range of VLAN IDs are available for auto-allocation to tenant/project networks. 
+
+When using SR-IOV, Neutron maps a provider label to a physical interface and allocates an associated virtual function to a port when attached to a VM. The `sriov_host_interfaces` variable can be used to specify the interfaces, like so:
+
+```
+- network:
+    container_bridge: "br-vlan"
+    container_type: "veth"
+    container_interface: "eth11"
+    type: "vlan"
+    range: "101:200,301:400"
+    net_name: "vlan"
+    sriov_host_interfaces: "ens2f1"
+    group_binds:
+      - neutron_openvswitch_agent
+      - neutron_sriov_nic_agent
+```
+
+With the configuration above, Neutron will configure the SR-IOV agent and map the `vlan` provider label to the `ens2f1` interface.
+
+In some environments, network variables are managed on a per-host basis. The following example demonstrates how compute nodes can have varying configurations, such as differences in physical interfaces (**ens1f0** vs **ens2f1**):
+
+```
+compute_hosts:
+  compute2:
+    ip: 172.29.236.16
+    container_vars:
+        neutron_provider_networks:
+          network_types: "vlan"
+          network_vlan_ranges: "vlan:200:230"
+          network_mappings: "vlan:br-vlan"
+          network_sriov_mappings: "vlan:ens1f0"
+        nova_pci_passthrough_whitelist: '{ "physical_network":"vlan", "devname":"ens1f0" }'
+  compute3:
+    ip: 172.29.236.18
+    container_vars:
+        neutron_provider_networks:
+          network_types: "vlan"
+          network_vlan_ranges: "vlan:200:230"
+          network_mappings: "vlan:br-vlan"
+          network_sriov_mappings: "vlan:ens2f1"
+        nova_pci_passthrough_whitelist: '{ "physical_network":"vlan", "devname":"ens2f1" }'
+```
+        
+Be careful to avoid duplicating overrides found here in `user_variables.yml`, as vars specified in `user_variables.yml` are global. In other words, if `nova_pci_passthrough_whitelist` is specified here, don't specify it in `user_variables.yml`.
+
+# Running the playbooks
+
+The two playbooks responsible for implementing SR-IOV are:
+
+```
+os-neutron-install.yml
+os-nova-install.yml
+```
+
+These playbooks will be run as part of `setup-openstack.yml` or they can be run independently as shown here:
+
+```
+cd /opt/openstack-ansible/playbooks/
+openstack-ansible os-neutron-install.yml os-nova-install.yml
+```
+
+Once complete, check the agent list to confirm the SR-IOV agent has checked in:
+
+```
+root@infra1-utility-container-ef7d8189:~# openstack network agent list --agent-type nic
++--------------------------------------+------------------+-------------+-------------------+-------+-------+-------------------------+
+| ID                                   | Agent Type       | Host        | Availability Zone | Alive | State | Binary                  |
++--------------------------------------+------------------+-------------+-------------------+-------+-------+-------------------------+
+| 1a0a3fd7-4b01-4807-ab26-758ec7ec9d8a | NIC Switch agent | hp02-qlogic | None              | :-)   | UP    | neutron-sriov-nic-agent |
+| 624c8394-b561-4f08-a362-f18189e41de0 | NIC Switch agent | hp03-2x520  | None              | :-)   | UP    | neutron-sriov-nic-agent |
++--------------------------------------+------------------+-------------+-------------------+-------+-------+-------------------------+
+```
+
+# Using SR-IOV
+
+To spin up an instance using SR-IOV, you must first create a port with certain characteristics. The `direct` port type instructs Neutron to bind the port to an SR-IOV agent on the respective compute to which the instance was scheduled. To create a `direct` port, use the following syntax:
+
+```
+openstack port create --network vlan101 --vnic-type direct --disable-port-security vm3port
+```
+
+The command creates a `direct` type of port in the `vlan101` network. Port security, including security group rules, cannot be used for ports leveraging SR-IOV and has been disabled.
+
+```
++-----------------------+-----------------------------------------------------------------------------+
+| Field                 | Value                                                                       |
++-----------------------+-----------------------------------------------------------------------------+
+| admin_state_up        | UP                                                                          |
+| allowed_address_pairs |                                                                             |
+| binding_host_id       |                                                                             |
+| binding_profile       |                                                                             |
+| binding_vif_details   |                                                                             |
+| binding_vif_type      | unbound                                                                     |
+| binding_vnic_type     | direct                                                                      |
+| created_at            | 2018-09-21T13:39:53Z                                                        |
+| data_plane_status     | None                                                                        |
+| description           |                                                                             |
+| device_id             |                                                                             |
+| device_owner          |                                                                             |
+| dns_assignment        | None                                                                        |
+| dns_domain            | None                                                                        |
+| dns_name              | None                                                                        |
+| extra_dhcp_opts       |                                                                             |
+| fixed_ips             | ip_address='192.168.4.18', subnet_id='9493da3b-0b7c-4974-90f0-8f31e6a74bae' |
+| id                    | fb33a32e-7043-45fe-b0af-6d5e799d1183                                        |
+| mac_address           | fa:16:3e:30:1b:66                                                           |
+| name                  | vm3port                                                                     |
+| network_id            | cc93bbe1-2610-40ee-9594-2f469af07829                                        |
+| port_security_enabled | False                                                                       |
+| project_id            | d18bb3908ca84fcbb90a08d2727fc3ef                                            |
+| qos_policy_id         | None                                                                        |
+| revision_number       | 1                                                                           |
+| security_group_ids    |                                                                             |
+| status                | DOWN                                                                        |
+| tags                  |                                                                             |
+| trunk_details         | None                                                                        |
+| updated_at            | 2018-09-21T13:39:54Z                                                        |
++-----------------------+-----------------------------------------------------------------------------+
+```
+
+Next, create the instance and specify the port rather than a network:
+
+```
+openstack server create --key-name test --flavor m1.large.non-numa --image xenial-server-cloudimg-amd64 --nic port-id=vm3port --user-data=cloud.txt --availability-zone nova:hp02-qlogic vm3
+```
+
+The command shown here creates an instance with a standard flavor (4 vCPU, 8GB RAM in this case), a standard Ubuntu Xenial cloud image, and some userdata, and attaches it to the specified port. The VM will be scheduled to the `hp02-qlogic` (aka compute3) node in this environment.
+
+The output here shows the VM is `ACTIVE`:
+
+```
+root@infra1-utility-container-ef7d8189:~# openstack server list
++--------------------------------------+------+--------+----------------------+------------------------------+-------------------+
+| ID                                   | Name | Status | Networks             | Image                        | Flavor            |
++--------------------------------------+------+--------+----------------------+------------------------------+-------------------+
+| c24ccc51-0d84-477e-af1d-8f8d9685b3c5 | vm3  | ACTIVE | vlan101=192.168.4.18 | xenial-server-cloudimg-amd64 | m1.large.non-numa |
+| 48d30a90-a56a-4b94-967f-61522fff9e46 | vm2  | ACTIVE | vlan101=192.168.4.21 | xenial-server-cloudimg-amd64 | m1.large          |
+| 475bbed6-758b-454a-8f60-9a57732c0e19 | vm1  | ACTIVE | vlan101=192.168.4.4  | xenial-server-cloudimg-amd64 | m1.large          |
++--------------------------------------+------+--------+----------------------+------------------------------+-------------------+
+```
+
+If everything goes as expected, the SR-IOV agent will bind the port to a virtual function that can be observed in the following output:
+
+```
+root@hp02-qlogic:~# ip link show ens2f1
+7: ens2f1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq master ovs-system portid 40a8f02bd8d4 state UP mode DEFAULT group default qlen 1000
+    link/ether 40:a8:f0:2b:d8:d4 brd ff:ff:ff:ff:ff:ff
+    vf 0 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 1 MAC fa:16:3e:30:1b:66, vlan 101, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 2 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 3 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 4 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 5 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 6 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 7 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+```
+
+In this case, **vf 1** is associated with the MAC address of the port, `fa:16:3e:30:1b:66`. A connectivity test should prove successful:
+
+```
+retina-imac:~ jdenton$ ssh ubuntu@192.168.4.18
+ubuntu@192.168.4.18's password:
+Welcome to Ubuntu 16.04.5 LTS (GNU/Linux 4.4.0-134-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+27 packages can be updated.
+16 updates are security updates.
+
+New release '18.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Fri Sep 21 18:41:42 2018 from 192.168.1.53
+ubuntu@vm3:~$
+```
+
+# Drivers
+
+Instances using SR-IOV must be configured with drivers compatible with the underlying network interface card. In the case of the QLogic card used here, the same **bnx2x** driver that interacts with the underlying physical network card on the compute node can also be installed in the instance to interface with the virtual function:
+
+```
+ubuntu@vm3:~$ ethtool -i ens5
+driver: bnx2x
+version: 1.712.30-0
+firmware-version: bc 7.15.24
+expansion-rom-version:
+bus-info: 0000:00:05.0
+supports-statistics: yes
+supports-test: no
+supports-eeprom-access: no
+supports-register-dump: no
+supports-priv-flags: yes
+```
+
+The Ubuntu Xenial cloud image includes this driver by default. Other network cards, such as the Intel X520 or X540, may use separate drivers for the physical and the virtual function (**ixgbe** and **ixgbevf**, respectively). The **virtio** driver cannot be used with SR-IOV. 
+
+
+# Gotchas
+
+When SR-IOV is used, the virtual function becomes invisible to the underlying compute node once it is associated with a running instance. Therefore, it becomes difficult to observe traffic passing thru the interface as it traverses the compute node in or out of the physical network infrastructure. Mellanox has (or had) a [Ceilometer inspector](https://community.mellanox.com/docs/DOC-2145) that could acquire counters from the driver to assist in troubleshooting. Capturing live traffic might be possible using service chaining.
+
+Another alternative involves using **macvtap** as an intermediary. When a port of type `macvtap` is specified, a **macvtap** interface is created on the host and associated with a virtual function:
+
+```
+root@infra1-utility-container-ef7d8189:~# openstack port create --network vlan101 --vnic-type macvtap --disable-port-security vm4port
+...
+
+root@infra1-utility-container-ef7d8189:~# openstack server create --key-name test --flavor m1.large.non-numa --image xenial-server-cloudimg-amd64 --nic port-id=vm4port --user-data=cloud.txt --availability-zone nova:hp02-qlogic vm4-macvtap
+...
+
+root@hp02-qlogic:~# ip -d link show macvtap0
+43: macvtap0@enp8s9f1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 500
+    link/ether fa:16:3e:5a:f6:2e brd ff:ff:ff:ff:ff:ff promiscuity 0
+    macvtap  mode passthru addrgenmode eui64
+    
+root@hp02-qlogic:~# ip link show ens2f1
+7: ens2f1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9000 qdisc mq master ovs-system portid 40a8f02bd8d4 state UP mode DEFAULT group default qlen 1000
+    link/ether 40:a8:f0:2b:d8:d4 brd ff:ff:ff:ff:ff:ff
+    vf 0 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 1 MAC fa:16:3e:5a:f6:2e, vlan 101, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 2 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 3 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 4 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 5 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 6 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+    vf 7 MAC 00:00:00:00:00:00, tx rate 10000 (Mbps), max_tx_rate 10000Mbps, spoof checking on, link-state auto
+```
+
+The **macvtap** interface is then connected to the instance. Because the interface is visible to the underlying OS, utilities such as **ifconfig** and **tcpdump** can be used, among others. The instance will fallback to the **virtio** driver, but will still see a boost in performance compared to bridges since SR-IOV is still leveraged:
+
+```
+ubuntu@vm4-macvtap:~$ ethtool -i ens3
+driver: virtio_net
+version: 1.0.0
+firmware-version:
+expansion-rom-version:
+bus-info: 0000:00:03.0
+supports-statistics: no
+supports-test: no
+supports-eeprom-access: no
+supports-register-dump: no
+supports-priv-flags: no
+```
+
+# Summary
+
+The use of SR-IOV requires some planning on the part of the deployer and the end user. Dedicated interfaces should be used for SR-IOV. The use of bonding is incompatible with SR-IOV, however, multiple physical interfaces can be mapped to a single provider label. Bonding within an instance may be possible, however, there is no guarantee the virtual functions will be spread across multiple physical interfaces.
+
+End users should also be aware that SR-IOV may complicate live migration efforts. The use of **macvtap** may simplify that effort, though.
+
+As always, feel free to reach out on IRC in #openstack-ansible or on Twitter at @jimmdenton with any questions, corrections, or criticism =)
