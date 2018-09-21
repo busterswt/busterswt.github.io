@@ -9,6 +9,7 @@ tag:
 - vintage
 - serial
 - xenix
+- uniplus
 - unix
 category: blog
 blog: true
@@ -21,23 +22,30 @@ description: Hands-on with the Sapient Technologies quad-port serial expansion c
 The Lisa computer holds a special place in Apple lore and in the hearts of enthusiasts and collectors around the world. My interest in the Apple Lisa has led me to people and communities looking to breath new life into the vintage system. This is nothing new, of course. The platform saw CPU and software upgrades introduced years after it was discontinued, and folks brought out hard disk replacements in the early 2000's to replace aging Apple ProFile and Widget drives. 
 <!--more-->
 
-So, when I found out that a quad-port serial expansion card was in the works I had to know more. John Woodall from VintageMicros explained that the new quad-port board, or QPB, was "a modernized version of a serial card for the Apple Lisa that was manufactured and sold by Tecmar[^1]." 
+So, when I found out that a quad-port serial expansion card was in the works I had to know more. John Woodall from VintageMicros explained that the new quad-port board, or QPB, was "part of a two-year effort to build a modernized version of a serial card for the Apple Lisa that was manufactured and sold by Tecmar[^1]." Todd Meyer, vintage Apple hardware enthusiast and Founder of Sapient Technologies, funded the endeavor as part of the [**Lisa Hardware Preservation Project**](https://www.callapple.org/hardware/the-apple-lisa-hardware-conservation-project/) with help from the following Lisa experts and devotees:
 
-But rather than providing additional serial interfaces to users of the Lisa's main operating system, the Lisa Office System, the card was to be used with the Microsoft/SCO XENIX operating system and later, UniSoft's UniPlus+ UNIX. Intriguing...
+- James MacPhail -- Design Engineering
+- Rick Ragnini -- Quality Engineering and Testing
+- John Woodall -- Parts Procurement, Assembly and Testing
+
+The original quad-port serial expansion card was to be used with the Microsoft/SCO XENIX operating system and later, UniSoft's UniPlus+ UNIX, rather than the Lisa Office System. At the time of its release, UNIX had been around for over a decade and was mostly used on large mainframes and minicomputers like the PDP and VAX series of machines. In the early 80's, as microcomputers became more powerful, you could find vendors porting UNIX and UNIX-based operating systems like XENIX to less-expensive systems like the Apple Lisa and other 68000 or 8086-based systems, among others. Needless to say, I was intrigued.
+
+After talking with John, I received a pre-production sample of the card and spent a few months putting together a guide. This exercise involved installing both Microsoft XENIX 3.0 and UniSoft UniPlus+ UNIX V and working out the post-installation kinks. The guide quickly balooned to over 100 pages and includes information on basic administrative tasks, printing, and more, within the XENIX and UNIX operating systems. It even includes information on interfacing with terminal emulators running on new and vintage Macs and PCs running Windows. Instructions for configuring UUCP on High Sierra are included for those willing to walk on the wild side. 
 
 ![Hub](/assets/images/2018-08-14-sapient-qpb/hub.png)
 
-At the time of its release, UNIX had been around for over a decade and was mostly used on large mainframes and minicomputers like the PDP and VAX series of machines. In the early 80's, as microcomputers became more powerful, you could find vendors porting UNIX and UNIX-based operating systems like XENIX to less-expensive systems like the Apple Lisa and other 68000 or 8086-based systems, among others.
-
-Thanks to Sapient Technologies, this fresh look on a unique and difficult-to-obtain expansion card has been made available to the Lisa community. But how would one use it? 
+Thanks to Sapient Technologies, this fresh look on a unique and difficult-to-obtain expansion card has been made available to the Lisa community.
 
 [^1]: Tecmar was a computer peripheral company that created products for many different systems and platforms in the 1980s and early 1990s. 
 
 
 # The card
-The Quad-Port Serial Expansion Board, or QPB, offers a total of four serial interfaces that can be used to connect the Lisa to different terminals or terminal emulators, as well as serial printers and modems, within a supported operating system like UNIX or XENIX.
 
-![Serial Card](/assets/images/2018-08-14-sapient-qpb/serialcard.png)
+The process of building a new card based on the Tecmar card began in 2016. The original PCB was duplicated and tested with modern components, then optimized for function, form factor, and performance by a design engineer who knows a thing or two about Lisa hardware. A new PCB was fabricated and a prototype built. Many hours of development, testing, building and writing resulted in a final product two years later.  
+
+Within a supported operating system like UNIX or XENIX, the Quad-Port Serial Expansion Board, or QPB, offers a total of four serial interfaces that can be used to connect the Lisa to different terminals or terminal emulators as well as serial printers and modems.
+
+![Serial Card](/assets/images/2018-08-14-sapient-qpb/serialcard.png) 
 
 Two external RS232 DB25 serial interfaces can be connected to other computers and peripherals using cables and adapters. The card also includes two internal headers that can be exposed using DB25-to-ribbon cable adapters that are provided with the card.
 
@@ -45,7 +53,7 @@ Using a USB-to-serial adapter, users can connect modern systems to the Lisa as t
 
 ![Z-Term MacOS](/assets/images/2018-08-14-sapient-qpb/ztermmac.png)
 
-Or, users can adopt a fully-retro setup and connect using vintage systems, like the Macintosh 128k, using adapters provided by VintageMicros:
+Or, users can adopt a fully-retro setup and connect using vintage systems, like the Macintosh 128k, using adapters provided by VintageMicros or ImageWriter I or II cables depending on the system:
 
 ![MacTerminal](/assets/images/2018-08-14-sapient-qpb/macterminal.png)
 
@@ -87,10 +95,10 @@ Other original games from BSD UNIX can be found on the Internet, including [here
 
 # Summary
 
-Using UNIX-based operating systems on the Apple Lisa is a real treat, and further demonstrates the Lisa's flexibility and backwards compatibility of modern UNIX-based operating systems. The Quad-Port Serial Expansion Board enables the Lisa to act as a communications hub for up to four directly-connected hosts, and users can interact many more using an intermediate device like a Raspberry Pi to route UUCP over the Internet.
+Using UNIX-based operating systems on the Apple Lisa is a real treat, and further demonstrates the Lisa's flexibility and the backwards compatibility of modern UNIX-based operating systems. The Quad-Port Serial Expansion Board enables the Lisa to act as a communications hub for up to four directly-connected hosts, and users can interact many more using an intermediate device like a Raspberry Pi to route UUCP over the Internet.
 
-The 100+ page color User's Guide includes information on basic administrative tasks, printing, and more, within the XENIX and UNIX operating systems, and even includes information on interfacing with terminal emulators running on new and vintage Macs and PCs running Windows. Instructions for configuring UUCP on High Sierra are included for those willing to walk on the wild side. 
+Both operating systems are available on Bitsavers, but the installation process is a bit nuanced. The pre-installed operating systems allow users to immediately enjoy a peek into the past. The pre-POSIX C compiler included with UniPlus+ UNIX even allows ambitious users to develop applications. The UniPlus+ Development Guide provides information on included libraries. XENIX development tools are not included but can be installed.
 
-Without the diligence of the software and hardware experts in the Lisa community, both XENIX and UNIX for the Apple Lisa would have been lost to time. Thank you!
+Without the diligence of the software and hardware experts in the Lisa community, both XENIX and UNIX for the Apple Lisa as well as the quad-port serial expansion board would have been lost to time. Thank you!
 
-For more information on the Sapient Technologies Quad-Port Serial Expansion board and the accompanying kit, contact John Woodall of [VintageMicros](http://vintagemicros.com/).
+For more information on the Sapient Technologies Quad-Port Serial Expansion board and the accompanying kit, check out the product page at [http://vintagemicros.com/catalog/apple-lisa-quadport-serial-board-unix-xenix-with-software-p-303.html](http://vintagemicros.com/catalog/apple-lisa-quadport-serial-board-unix-xenix-with-software-p-303.html) or contact John Woodall of [VintageMicros](http://vintagemicros.com/). Kits and cards are expected to be available in November 2018. 
