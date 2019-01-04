@@ -15,6 +15,12 @@ author: jamesdenton
 description: "Speeding Up Multi-Node All-In-One (MNAIO) OpenStack-Ansible Deployments w/ NVMe"
 ---
 
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
+
 The OpenStack-Ansible project provides an [All-In-One](https://docs.openstack.org/openstack-ansible/latest/user/aio/quickstart.html) (AIO) deployment playbook for developers that creates a functional OpenStack cloud on a single host and is perfect for testing most basic functions. For advanced development and testing, however, a [Multi-Node AIO](https://github.com/openstack/openstack-ansible-ops/tree/master/multi-node-aio) deployment can be performed that deploys several virtual machines on a single bare-metal node to closely replicate a production deployment.
 
 <!--more-->
@@ -28,6 +34,7 @@ My beef with the MNAIO deployment up until now has been _time_. In a stock MNAIO
 | Compute       | 2     |
 | Load Balancer | 1     |
 | Logging       | 1     |
+{: .tablelines}
 
 Needless to say, there are a lot of actions that need to occur to complete the cloud deployment. Time is money, as they say. In this case, spending a little money upfront can give you back a whole lot of time along the way.
  
