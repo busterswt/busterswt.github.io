@@ -28,6 +28,7 @@ My beef with the MNAIO deployment up until now has been _time_. In a stock MNAIO
 | Compute       | 2     |
 | Load Balancer | 1     |
 | Logging       | 1     |
+{:.mbtablestyle}
 
 Needless to say, there are a lot of actions that need to occur to complete the cloud deployment. Time is money, as they say. In this case, spending a little money upfront can give you back a whole lot of time along the way.
  
