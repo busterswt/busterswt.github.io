@@ -20,6 +20,8 @@ The OpenStack-Ansible project provides an [All-In-One](https://docs.openstack.or
 <!--more-->
 My beef with the MNAIO deployment up until now has been _time_. In a stock MNAIO deployment, twelve different virtual machines are built and bootstrapped using PXE. The Ubuntu 16.04 LTS operating system is installed with the Ubuntu installer. Once the operating system is installed, a full OpenStack deployment occurs with the following breakdown:
 
+<center>
+
 | Service       | Count |
 |---------------|:-----:|
 | Infra         | 3     |
@@ -28,6 +30,8 @@ My beef with the MNAIO deployment up until now has been _time_. In a stock MNAIO
 | Compute       | 2     |
 | Load Balancer | 1     |
 | Logging       | 1     |
+
+</center>
 
 Needless to say, there are a lot of actions that need to occur to complete the cloud deployment. Time is money, as they say. In this case, spending a little money upfront can give you back a whole lot of time along the way.
  
@@ -68,9 +72,13 @@ Many different configurables are available, just check the README.
 
 After first experiencing a MNAIO deployment and waiting for it to finish, I made some modifications to the playbooks and scripts to document start and end times so that I'd have a better idea as to how long it took for VMs to deployed and for certain playbooks to execute. With the 1TB spinning SATA disk, the results are broken down as follows:
 
-|          | build.sh | <span style="color:grey">VM Setup</span> | Setup Hosts | Setup Infrastructure | Setup OpenStack | Total   |
+<center>
+
+|          | build.sh | <span style="color:#D3D3D3">VM Setup</span> | Setup Hosts | Setup Infrastructure | Setup OpenStack | Total   |
 |----------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-| Duration | <span style="color:red">51:38</span>    | <span style="color: grey">36:43</span>   | 55:03       | 56:41                | 1:39:27         | <span style="color:red">4:22:49</span> |
+| Duration | <span style="color:red">51:38</span>    | <span style="color: #D3D3D3">36:43</span>   | 55:03       | 56:41                | 1:39:27         | <span style="color:red">4:22:49</span> |
+
+</center>
 
 The `build.sh` script is executed by the user and installs packages on the bare-metal node to support the hosting of virtual machines. By default, twelve virtual machines are setup and deployed with the Ubuntu OS using a preseed over PXE. Once deployed, the script will determine they are online and bootstrap the OpenStack deployment. When the bootstrap is complete, the script will exit while OpenStack continues to be deployed from the **infra1** virtual machine to the rest of the virtual machines.
 
@@ -88,9 +96,13 @@ For testing, I picked up the following:
 
 Wiping the host and starting a fresh deployment with an NVMe data disk showed some improvement: 
 
-|          | build.sh | <span style="color:grey">VM Setup</span> | Setup Hosts | Setup Infrastructure | Setup OpenStack | Total   |
+<center>
+
+|          | build.sh | <span style="color:#D3D3D3">VM Setup</span> | Setup Hosts | Setup Infrastructure | Setup OpenStack | Total   |
 |----------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-| Duration | <span style="color:green">31:11</span> | <span style="color:grey">23:46</span>   | 32:05       | 51:33                | 1:19:02         | <span style="color:green">3:13:51</span> |
+| Duration | <span style="color:green">31:11</span> | <span style="color:#D3D3D3">23:46</span>   | 32:05       | 51:33                | 1:19:02         | <span style="color:green">3:13:51</span> |
+
+</center>
 
 Of the now 31 minutes it took to execute `build.sh`, 23 minutes was spent deploying the virtual machines. Over 30 minutes was shaved off the execution of the first two OSA playbooks, `setup-hosts.yml` and `setup-infrastructure.yml`, and 20 minutes was saved on the `setup-openstack` playbook. Total execution time dropped nearly 70 minutes to 3 hours and 14 minutes.
 
@@ -102,9 +114,13 @@ I performed a second test with another NVMe drive that claimed up to 3500MB/sec 
 
 The proof is in the pudding, as they say, and the results can be seen here:
 
-|          | build.sh | <span style="color:grey">VM Setup</span> | Setup Hosts | Setup Infrastructure | Setup OpenStack | Total   |
+<center>
+
+|          | build.sh | <span style="color:#D3D3D3">VM Setup</span> | Setup Hosts | Setup Infrastructure | Setup OpenStack | Total   |
 |----------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-| Duration | <span style="color:green">35:46</span> | <span style="color:grey">20:08</span>   | 33:18       | 47:17                | 1:17:54         | <span style="color:green">3:14:15</span> |
+| Duration | <span style="color:green">35:46</span> | <span style="color:#D3D3D3">20:08</span>   | 33:18       | 47:17                | 1:17:54         | <span style="color:green">3:14:15</span> |
+
+</center>
 
 There's a margin of error here that says the differences between these two drives is negligible. My advice? Save your money for this use-case and stick with the HP EX920 or something similar.
 
@@ -114,14 +130,18 @@ For grins, I thought it would be interesting to compare the performance of my se
 
 The performance was better than I expected:
 
-|          | build.sh | <span style="color:grey">VM Setup</span> | Setup Hosts | Setup Infrastructure | Setup OpenStack | Total   |
-|----------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-| Duration | <span style="color:green">27:21</span> | <span style="color:grey">18:57</span>   | 25:44       | 24:36                | 53:36         | <span style="color:green">2:11:17</span> |
+<center>
 
-With an OnMetal I/O v2 node, the total time dropped an additional hour. There are some possible factors that play into this substantial decrease in time beyond storage, such as network bandwidth, that are difficult to determine. But needless to say, I'll consider the OnMetal servers if I really need to hit some deadlines.
+|          | build.sh | <span style="color:#D3D3D3">VM Setup</span> | Setup Hosts | Setup Infrastructure | Setup OpenStack | Total   |
+|----------|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+| Duration | <span style="color:green">27:21</span> | <span style="color:#D3D3D3">18:57</span>   | 25:44       | 24:36                | 53:36         | <span style="color:green">2:11:17</span> |
+
+</center>
+
+With an OnMetal I/O v2 node, the total time dropped an additional hour. There are some possible factors that play into this substantial decrease in time beyond storage, such as network bandwidth, that are difficult to determine. But needless to say, I'll consider the OnMetal servers if I really need to hit some deadlines and the price is right.
 
 # Summary
 
 The drop in NVMe storage pricing makes it an attractive option for homelabbers like myself who value the time savings and are willing to pay a fair price for it. I'm all about multitasking, but delivering results is even more important to me. Being able to save at least an hour a day, maybe two, means this NVMe investment will pay for itself in no time at all.
 
-As always, feel free to reach out on IRC in #openstack-ansible or on Twitter at @jimmdenton with any questions, corrections, or criticism =)
+See you in #openstack-ansible on FreeNode IRC!
