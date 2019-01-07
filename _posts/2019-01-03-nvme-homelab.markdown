@@ -1,5 +1,5 @@
 ---
-title: "Speeding Up Multi-Node All-In-One (MNAIO) OpenStack-Ansible Deployments"
+title: "Speeding Up Multi-Node All-In-One (MNAIO) OpenStack-Ansible Deployments using NVMe Disks"
 layout: post
 date: 2019-01-03
 image: /assets/images/2019-01-03-nvme-homelab/SpinningWheelOfDeath.jpg
