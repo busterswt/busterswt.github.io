@@ -19,6 +19,7 @@ description: "Building FD.io VPP 18.10 on Ubuntu 18.04 LTS with Mellanox DPDK PM
 I recently revisited the [FD.io](https://fd.io/technology/) virtual switch based on Vector Packet Processing (VPP) with a goal of making it deployable with OpenStack-Ansible, and while I got things working with the Intel X520 NICs I have in my machine, the Mellanox ConnectX-4 LX NICs were a bit trickier.
 
 Mellanox provides a knowledge article [here](https://community.mellanox.com/s/article/How-to-Build-VPP-FD-IO-18-07-18-10) that describes the process of compiling VPP to support the Mellanox DPDK poll-mode driver, but the instructions are geared towards Red Hat 7.5 installations. Given that I run primarily Ubuntu-based systems, the instructions had to be modified (and simplified) accordingly.
+<!--more-->
  
 # Getting started
 
