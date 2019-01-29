@@ -1,0 +1,321 @@
+---
+title: "Building FD.io VPP 18.10 on Ubuntu 18.04 LTS with Mellanox DPDK PMD without OFED"
+layout: post
+date: 2019-01-29
+image: /assets/images/2019-01-29-vpp-1810-mellanox/fdio-logo.png
+headerImage: true
+tag:
+- ofed
+- mellanox
+- vpp
+- dpdk
+- openstack
+category: blog
+blog: true
+author: jamesdenton
+description: "Building FD.io VPP 18.10 on Ubuntu 18.04 LTS with Mellanox DPDK PMD without OFED"
+---
+
+I recently revisited the [FD.io](https://fd.io/technology/) virtual switch based on Vector Packet Processing (VPP) with a goal of making it deployable with OpenStack-Ansible, and while I got things working with the Intel X520 NICs I have in my machine, the Mellanox ConnectX-4 LX NICs were a bit trickier.
+
+Mellanox provides a knowledge article [here](https://community.mellanox.com/s/article/How-to-Build-VPP-FD-IO-18-07-18-10) that describes the process of compiling VPP to support the Mellanox DPDK poll-mode driver, but the instructions are geared towards Red Hat 7.5 installations. Given that I run primarily Ubuntu-based systems, the instructions had to be modified (and simplified) accordingly.
+ 
+# Getting started
+
+Mellanox lists some references which may be helpful:
+
+- [Performance tuning for VPP](https://wiki.fd.io/view/VPP/How_To_Optimize_Performance_(System_Tuning))
+- [Routing and switching tutorial](https://wiki.fd.io/view/VPP/Tutorial_Routing_and_Switching)
+- [VPP CLI guide](https://wiki.fd.io/view/VPP/Command-line_Interface_(CLI)_Guide)
+
+For this example, I'm working with the following hardware:
+
+- HP Proliant DL360p G8
+- 2x Intel E5-2667v2 3.3Ghz processors
+- Intel X520 Dual-Port 10G NIC
+- ConnectX-4 Lx EN Dual-Port 10/25G NIC
+
+You'll want to be sure that Ubuntu 18.04 LTS is installed with the latest supported kernel, and that the Mellanox OFED software is **NOT** installed!
+
+## Install requirements
+
+Compiling VPP to support the Mellanox DPDK PMD requires some packages be installed first. Perform the following to get the system up-to-date:
+
+```
+# apt update
+# apt upgrade
+```
+
+Then, install the following packages:
+
+```
+# apt install make git cpp gcc libssl-dev libmnl-dev libnuma-dev net-tools rdma-core nasm
+```
+
+## Download VPP 18.10
+
+Once the pre-requisities are out of the way, you can download the VPP 18.10 software from GitHub:
+
+```
+# git clone -b stable/1810 https://github.com/FDio/vpp ~/vpp.1810
+```
+
+## Make the sausage
+
+At this point, you should be ready to compile VPP with support for the Mellanox poll-mode driver. Perform the following steps:
+
+```
+# cd ~/vpp.1810
+# make install-dep
+# make dpdk-install-dev DPDK_MLX5_PMD=y DPDK_MLX5_PMD_DLOPEN_DEPS=y
+```
+
+Next, copy the Mellanox library to the `/usr/lib` directory:
+
+```
+# cp /opt/vpp/external/x86_64/lib/librte_pmd_mlx5_glue.so* /usr/lib/
+```
+
+Then, make the deb packages that will later be installed:
+
+```
+# make pkg-deb vpp_uses_dpdk_mlx5_pmd=yes DPDK_MLX5_PMD_DLOPEN_DEPS=y
+```
+
+Lastly, install the packages:
+
+```
+# dpkg -i build-root/vpp-lib*.deb
+# dpkg -i build-root/vpp_18*.deb
+# dpkg -i build-root/vpp-plug*.deb
+```
+
+## Testing
+
+A `vpp` service is installed as part of this process, and should be restarted to ensure the interfaces are properly detected. Once restarted, run the following `vppctl` command to enter the VPP CLI, and `show interface` to view the interfaces:
+
+```
+vpp# show int
+              Name               Idx    State  MTU (L3/IP4/IP6/MPLS)     Counter          Count
+TenGigabitEthernet4/0/0           1     down         9000/0/0/0
+TenGigabitEthernet4/0/1           2     down         9000/0/0/0
+TwentyFiveGigabitEthernet21/0/0   3     down         9000/0/0/0
+TwentyFiveGigabitEthernet21/0/1   4     down         9000/0/0/0
+local0                            0     down          0/0/0/0
+```
+
+On my system, the Mellanox ConnectX-4 Lx shows up as `TwentyFiveGigabitEthernet21/0/x`, with both ports reflected as two independent interfaces. The other interface, `TenGigabitEthernet4/0/`, is the Intel X520.
+
+To test connectivity, I applied an IP address to one of the interfaces using the following commands:
+
+```
+vpp# set int ip address TwentyFiveGigabitEthernet21/0/0 10.50.0.204/24
+vpp# set interface state TwentyFiveGigabitEthernet21/0/0 up
+```
+
+A route was added like so:
+
+```
+vpp# ip route add 0.0.0.0/0 via 10.50.0.1
+```
+
+Pinging `10.50.0.204` from my local workstation demonstrates successful connectivity:
+
+```
+retina-imac:~ jdenton$ ping 10.50.0.204
+PING 10.50.0.204 (10.50.0.204): 56 data bytes
+64 bytes from 10.50.0.204: icmp_seq=0 ttl=64 time=3.341 ms
+64 bytes from 10.50.0.204: icmp_seq=1 ttl=64 time=3.135 ms
+64 bytes from 10.50.0.204: icmp_seq=2 ttl=64 time=4.158 ms
+64 bytes from 10.50.0.204: icmp_seq=3 ttl=64 time=2.457 ms
+^C
+--- 10.50.0.204 ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 2.457/3.273/4.158/0.607 ms
+```
+
+Additional commands that may be useful include `show pci` and `show hardware`:
+
+```
+root@hp04-dl380p:~# vppctl show pci
+Address      Sock VID:PID     Link Speed   Driver          Product Name                    Vital Product Data
+0000:03:00.0   0  14e4:168e   5.0 GT/s x8  bnx2x           HP FlexFabric 10Gb 2-port 533FLR PN: 700757-001
+                                                                                           EC: A-5332
+                                                                                           V0: 0x 32 35 57 20 50 43 49 65 ...
+                                                                                           MN: 103C
+                                                                                           V7: 0x 35 33 33 46 4c 52 2d 54
+                                                                                           V1: 0x 38 2e 32 2e 39
+                                                                                           V2: 0x 35 33 34 31
+                                                                                           V3: 0x 37 2e 31 35 2e 32 34
+                                                                                           V5: 0x 30 41
+                                                                                           V6: 0x 37 2e 31 34 2e 31 33
+                                                                                           SN: 7C4341003S
+                                                                                           V4: 0x 32 43 34 34 46 44 39 31 ...
+                                                                                           RV: 0x f0 00 00 00 00 00 00 00 ...
+0000:03:00.1   0  14e4:168e   5.0 GT/s x8  bnx2x           HP FlexFabric 10Gb 2-port 533FLR PN: 700757-001
+                                                                                           EC: A-5332
+                                                                                           V0: 0x 32 35 57 20 50 43 49 65 ...
+                                                                                           MN: 103C
+                                                                                           V7: 0x 35 33 33 46 4c 52 2d 54
+                                                                                           V1: 0x 38 2e 32 2e 39
+                                                                                           V2: 0x 35 33 34 31
+                                                                                           V3: 0x 37 2e 31 35 2e 32 34
+                                                                                           V5: 0x 30 41
+                                                                                           V6: 0x 37 2e 31 34 2e 31 33
+                                                                                           SN: 7C4341003S
+                                                                                           V4: 0x 32 43 34 34 46 44 39 31 ...
+                                                                                           RV: 0x f0 00 00 00 00 00 00 00 ...
+0000:04:00.0   0  8086:10fb   5.0 GT/s x8  uio_pci_generic
+0000:04:00.1   0  8086:10fb   5.0 GT/s x8  uio_pci_generic
+0000:21:00.0   1  15b3:1015   8.0 GT/s x8  mlx5_core       CX4121A - ConnectX-4 LX SFP28   PN: MCX4121A-ACAT
+                                                                                           EC: AA
+                                                                                           SN: MT1651X11112
+                                                                                           V0: 0x 50 43 49 65 47 65 6e 33 ...
+                                                                                           RV: 0x 29
+0000:21:00.1   1  15b3:1015   8.0 GT/s x8  mlx5_core       CX4121A - ConnectX-4 LX SFP28   PN: MCX4121A-ACAT
+                                                                                           EC: AA
+                                                                                           SN: MT1651X11112
+                                                                                           V0: 0x 50 43 49 65 47 65 6e 33 ...
+                                                                                           RV: 0x 29
+root@hp04-dl380p:~#
+root@hp04-dl380p:~#
+root@hp04-dl380p:~# vppctl show hardware
+              Name                Idx   Link  Hardware
+TenGigabitEthernet4/0/0            1    down  TenGigabitEthernet4/0/0
+  Ethernet address 00:1b:21:bc:5f:06
+  Intel 82599
+    carrier up full duplex speed 10000 mtu 9202
+    flags: pmd maybe-multiseg tx-offload intel-phdr-cksum
+    rx: queues 1 (max 128), desc 1024 (min 32 max 4096 align 8)
+    tx: queues 1 (max 64), desc 1024 (min 32 max 4096 align 8)
+    pci: device 8086:10fb subsystem 103c:17d3 address 0000:04:00.00 numa 0
+    module: id SFP/SFP+/SFP28, compatibility:
+            vendor: OEM, part SFP-H10GB-CU1M
+            revision: R, serial: CSS11I30123, date code: 180301
+            cable length: 1m
+    max rx packet len: 15872
+    promiscuous: unicast off all-multicast off
+    vlan offload: strip off filter off qinq off
+    rx offload avail:  vlan-strip ipv4-cksum udp-cksum tcp-cksum rcp-lro
+                       macsec-strip vlan-filter vlan-extend jumbo-frame crc-strip
+                       scatter security
+    rx offload active: jumbo-frame scatter
+    tx offload avail:  vlan-insert ipv4-cksum udp-cksum tcp-cksum sctp-cksum
+                       tcp-tso macsec-insert
+    tx offload active: udp-cksum tcp-cksum
+    rss avail:         ipv4 ipv4-tcp ipv4-udp ipv6 ipv6-tcp ipv6-udp ipv6-tcp-ex
+                       ipv6-udp-ex ipv6-ex ipv6-tcp-ex ipv6-udp-ex
+    rss active:        none
+    tx burst function: ixgbe_xmit_pkts
+    rx burst function: ixgbe_recv_pkts
+
+TenGigabitEthernet4/0/1            2    down  TenGigabitEthernet4/0/1
+  Ethernet address 00:1b:21:bc:5f:07
+  Intel 82599
+    carrier up full duplex speed 10000 mtu 9202
+    flags: pmd maybe-multiseg tx-offload intel-phdr-cksum
+    rx: queues 1 (max 128), desc 1024 (min 32 max 4096 align 8)
+    tx: queues 1 (max 64), desc 1024 (min 32 max 4096 align 8)
+    pci: device 8086:10fb subsystem 103c:17d3 address 0000:04:00.01 numa 0
+    module: id SFP/SFP+/SFP28, compatibility:
+            vendor: Arista Networks, part CAB-SFP-SFP-1M
+            revision: , serial: ARS11I80506, date code: 160401
+            cable length: 1m
+    max rx packet len: 15872
+    promiscuous: unicast off all-multicast off
+    vlan offload: strip off filter off qinq off
+    rx offload avail:  vlan-strip ipv4-cksum udp-cksum tcp-cksum rcp-lro
+                       macsec-strip vlan-filter vlan-extend jumbo-frame crc-strip
+                       scatter security
+    rx offload active: jumbo-frame scatter
+    tx offload avail:  vlan-insert ipv4-cksum udp-cksum tcp-cksum sctp-cksum
+                       tcp-tso macsec-insert
+    tx offload active: udp-cksum tcp-cksum
+    rss avail:         ipv4 ipv4-tcp ipv4-udp ipv6 ipv6-tcp ipv6-udp ipv6-tcp-ex
+                       ipv6-udp-ex ipv6-ex ipv6-tcp-ex ipv6-udp-ex
+    rss active:        none
+    tx burst function: ixgbe_xmit_pkts
+    rx burst function: ixgbe_recv_pkts
+
+TwentyFiveGigabitEthernet21/0/0    3     up   TwentyFiveGigabitEthernet21/0/0
+  Ethernet address 24:8a:07:94:f9:c6
+  Mellanox ConnectX-4 Family
+    carrier up full duplex speed 10000 mtu 9202
+    flags: admin-up pmd maybe-multiseg
+    rx: queues 1 (max 65535), desc 1024 (min 0 max 65535 align 1)
+    tx: queues 1 (max 65535), desc 1024 (min 0 max 65535 align 1)
+    pci: device 15b3:1015 subsystem 15b3:0003 address 0000:21:00.00 numa 1
+    module: unknown
+    max rx packet len: 65536
+    promiscuous: unicast off all-multicast on
+    vlan offload: strip off filter off qinq off
+    rx offload avail:  vlan-strip ipv4-cksum udp-cksum tcp-cksum vlan-filter
+                       jumbo-frame crc-strip scatter timestamp
+    rx offload active: jumbo-frame scatter
+    tx offload avail:  vlan-insert ipv4-cksum udp-cksum tcp-cksum tcp-tso
+                       outer-ipv4-cksum vxlan-tnl-tso gre-tnl-tso
+    tx offload active:
+    rss avail:         ipv4 ipv4-frag ipv4-tcp ipv4-udp ipv4-other ipv6 ipv6-frag
+                       ipv6-tcp ipv6-udp ipv6-other ipv6-tcp-ex ipv6-udp-ex
+                       ipv6-ex ipv6-tcp-ex ipv6-udp-ex
+    rss active:        none
+    tx burst function: mlx5_tx_burst_mpw
+    rx burst function: mlx5_rx_burst
+
+    tx frames ok                                           4
+    tx bytes ok                                          336
+    rx frames ok                                         786
+    rx bytes ok                                        97239
+    extended stats:
+      rx good packets                                    786
+      tx good packets                                      4
+      rx good bytes                                    97239
+      tx good bytes                                      336
+      rx q0packets                                       786
+      rx q0bytes                                       97239
+      tx q0packets                                         4
+      tx q0bytes                                         336
+      rx port unicast bytes                             4666
+      rx port multicast bytes                          48595
+      rx port broadcast bytes                           8357
+      rx port unicast packets                             48
+      rx port multicast packets                          290
+      rx port broadcast packets                          126
+      tx port multicast bytes                             70
+      tx port multicast packets                            1
+      tx packets phy                                       5
+      rx packets phy                                     464
+      tx bytes phy                                       444
+      rx bytes phy                                     63474
+TwentyFiveGigabitEthernet21/0/1    4    down  TwentyFiveGigabitEthernet21/0/1
+  Ethernet address 24:8a:07:94:f9:c7
+  Mellanox ConnectX-4 Family
+    carrier up full duplex speed 10000 mtu 9202
+    flags: pmd maybe-multiseg
+    rx: queues 1 (max 65535), desc 1024 (min 0 max 65535 align 1)
+    tx: queues 1 (max 65535), desc 1024 (min 0 max 65535 align 1)
+    pci: device 15b3:1015 subsystem 15b3:0003 address 0000:21:00.01 numa 1
+    module: unknown
+    max rx packet len: 65536
+    promiscuous: unicast off all-multicast off
+    vlan offload: strip off filter off qinq off
+    rx offload avail:  vlan-strip ipv4-cksum udp-cksum tcp-cksum vlan-filter
+                       jumbo-frame crc-strip scatter timestamp
+    rx offload active: jumbo-frame scatter
+    tx offload avail:  vlan-insert ipv4-cksum udp-cksum tcp-cksum tcp-tso
+                       outer-ipv4-cksum vxlan-tnl-tso gre-tnl-tso
+    tx offload active:
+    rss avail:         ipv4 ipv4-frag ipv4-tcp ipv4-udp ipv4-other ipv6 ipv6-frag
+                       ipv6-tcp ipv6-udp ipv6-other ipv6-tcp-ex ipv6-udp-ex
+                       ipv6-ex ipv6-tcp-ex ipv6-udp-ex
+    rss active:        none
+    tx burst function: removed_tx_burst
+    rx burst function: removed_rx_burst
+
+local0                             0    down  local0
+  local
+```
+
+# Summary
+
+In the future, I'd love to see the Mellanox PMD included in the packaged distribution of VPP so these hoops can be avoided. For now, this process works to get me through some testing. Drop me a line if it works (or doesn't work) for you!
