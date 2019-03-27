@@ -2,7 +2,7 @@
 title: About
 layout: page
 ---
-![Profile Image](/assets/images/family.png)
+![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
 ## Personal 
 
