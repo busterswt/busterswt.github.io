@@ -2,7 +2,7 @@
 title: "Installing a GPU in an HP ProLiant DL380p G8"
 layout: post
 date: 2019-05-08
-image: /assets/images/2019-05-08-hp-gpu-cage/nvidia_fire.jpg
+image: /assets/images/2019-05-08-hp-gpu-cage/radeon_fire.jpg
 headerImage: true
 tag:
 - gpu
