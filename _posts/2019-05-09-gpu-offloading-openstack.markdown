@@ -369,17 +369,17 @@ Turns out, fully-offloaded transcoding isn't yet supported in Plex Media Server 
 
 To offload both encoding *and* decoding, a wrapper script should be implemented that adds an addition flag to enable the NVDEC engine.
 
-First, rename the `Plex Transcoder` to `Plex Transcoder Orig`:
+First, rename the `Plex Transcoder` to `Plex Transcoder2`:
 
 ```
 ubuntu@plex-pgu-server:~$ cd /usr/lib/plexmediaserver
-ubuntu@plex-pgu-server:~$ sudo mv Plex\ Transcoder Plex\ Transcoder\ Orig
+ubuntu@plex-pgu-server:~$ sudo mv Plex\ Transcoder Plex\ Transcoder2
 ```
 
 Then, create a file named `Plex Transcoder` with the following contents:
 
 ```
-#!/bin/bashmarap=$(cut -c 10-14 <<<"$@")if [ $marap == "mpeg4" ]; then     exec /usr/lib/plexmediaserver/Plex\ Transcoder2 "$@"else     exec /usr/lib/plexmediaserver/Plex\ Transcoder\ Orig -hwaccel nvdec "$@"fi
+#!/bin/bashmarap=$(cut -c 10-14 <<<"$@")if [ $marap == "mpeg4" ]; then     exec /usr/lib/plexmediaserver/Plex\ Transcoder2 "$@"else     exec /usr/lib/plexmediaserver/Plex\ Transcoder2 -hwaccel nvdec "$@"fi
 ```
 
 Next, set the file to be executable:
