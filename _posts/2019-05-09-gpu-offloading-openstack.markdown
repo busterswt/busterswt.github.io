@@ -84,7 +84,7 @@ $ sudo lspci -nn | grep NVIDIA
 
 In this example, the PCI Bus ID is `24:00.0`, the Vendor ID is `10de` and the Product ID is `1c30`. 
 
-There is a good chance that the kernel has detected the GPU and loaded a video card driver. In the case of NVIDIA cards, this likely means the open source `nouveau` driver, as shown here:
+There is a good chance that the kernel has detected the GPU and loaded a graphics driver. In the case of NVIDIA cards, this likely means the open source `nouveau` driver, as shown here:
 
 ```
 $ sudo lspci -s 24:00.0 -k
@@ -144,11 +144,11 @@ $ sudo lspci -s 24:00.0 -nnk
 	Kernel modules: nvidiafb, nouveau
 ```
 
-The `Kernel driver in use: vfio-pci` line indicated the proper driver is now in place.
+The `Kernel driver in use: vfio-pci` line indicates the proper driver is now in place.
 
 # Nova changes
 
-The OpenStack Compute service needs to be configured in two place in order to recognize and utilize the GPU.
+The OpenStack Compute service needs to be configured in two places in order to recognize and utilize the GPU.
 
 First, configure a PCI passthrough whitelist on the compute node where the GPU resides. Update the `[PCI]` section of the `/etc/nova/nova.conf` file with the following:
 
@@ -192,7 +192,7 @@ $ sudo systemctl restart nova-scheduler
 
 # Create a flavor
 
-Nova uses flavor metadata and properties to determine what resources should be associated with an instance. In the case of GPU passthrough, one must configure a flavor with the `pci_passthrough:alias` property. In the following example, I've created a new flavor with 6 vCPUs, 8 GB of RAM, a 40 GB disk, and a `pci_passthrough:alias` property referencing the alias we configured earlier:
+Nova uses flavor metadata and properties to determine what resources should be associated with an instance. In the case of GPU passthrough, one must configure a flavor with the `pci_passthrough:alias` property. In the following example, I've created a new flavor with 6 vCPUs, 8 GB of RAM, a 40 GB disk, and a `pci_passthrough:alias` property referencing the `quadro-p2000` alias we configured earlier:
 
 ```
 openstack flavor create \
@@ -311,7 +311,7 @@ A look at the Plex dashboard reflected software-based transcoding (note the lack
 
 ![dashboard software](/assets/images/2019-05-09-gpu-offloading-openstack/status-software.png)
 
-We can see the Quadro P2000 just sitting there, unutilized:
+We can see the Quadro P2000 just sitting there not utilized:
 
 ```
 Wed May  8 19:04:40 2019
@@ -333,7 +333,7 @@ Wed May  8 19:04:40 2019
 +-----------------------------------------------------------------------------+
 ```
 
-Enabling Hardware Acceleration in the Plex server settings and restarting the movie reflected an significant drop in CPU utilization:
+Enabling Hardware Acceleration in the Plex server settings and restarting the movie reflected a significant drop in CPU utilization:
 
 ![transcode cpu hardware](/assets/images/2019-05-09-gpu-offloading-openstack/transcode-hardware.png)
 
@@ -392,7 +392,7 @@ The changes should be noticed immediately. Restarting the stream, we can see CPU
 
 ![transcode cpu wrapper](/assets/images/2019-05-09-gpu-offloading-openstack/transcode-wrapper.png)
 
-Now we're cooking with gas! A quick look at `nvidia-smi` shows the GPU barely breaking a sweat:
+Now we're cooking with gas! A quick look at `nvidia-smi` shows the GPU barely breaking a sweat, but performing admirably:
 
 ```
 Wed May  8 19:25:14 2019
@@ -415,6 +415,10 @@ Wed May  8 19:25:14 2019
 ```
 
 # Summary
+
+GPU Passthrough and hardware offloading?
+
+![more please](/assets/images/2019-05-09-gpu-offloading-openstack/oliver.gif){: .center-image }
 
 If you have 4K content, chances are your viewers would benefit from **Direct Play** functionality only possible with true 4K-capable devices. Transcoding 4K to something like 1080p will likely result in some color manipulation that astute viewers would dislike, but for kids, it's good enough. Letting the Xeons try to transcode the media results in a lousy viewing experience, so the GPU is worth it to me. I also consider reducing the amount of vCPUs reserved for Plex in my lab as a win. 
 
