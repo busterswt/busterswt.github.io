@@ -416,9 +416,7 @@ Wed May  8 19:25:14 2019
 
 # Summary
 
-GPU Passthrough and hardware offloading?
-
-![more please](/assets/images/2019-05-09-gpu-offloading-openstack/oliver.gif){: .center-image }
+GPU Passthrough and hardware offloading? **Yes, please!**
 
 If you have 4K content, chances are your viewers would benefit from **Direct Play** functionality only possible with true 4K-capable devices. Transcoding 4K to something like 1080p will likely result in some color manipulation that astute viewers would dislike, but for kids, it's good enough. Letting the Xeons try to transcode the media results in a lousy viewing experience, so the GPU is worth it to me. I also consider reducing the amount of vCPUs reserved for Plex in my lab as a win. 
 
