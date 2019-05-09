@@ -63,11 +63,11 @@ I installed the riser in the second PCI bay, which requires a 2nd CPU:
 
 My server sits in the basement, which means I rely on the remote console via iLo for OOB management. On power up, everything looked good:
 
-![ilo_good](/assets/images/2019-05-08-hp-gpu-cage/ilo_goodr.jpg)
+![ilo_good](/assets/images/2019-05-08-hp-gpu-cage/ilo_goodr.png)
 
 A few minutes later, though, and things were taking a turn:
 
-![ilo_blank](/assets/images/2019-05-08-hp-gpu-cage/ilo_blank.jpg)
+![ilo_blank](/assets/images/2019-05-08-hp-gpu-cage/ilo_blank.png)
 
 After the first splash screen disappeared, there was *nothing*. No feedback, no errors, and no way to modify the BIOS. After a few reboots with no change in behavior, it dawned on me that something else may have been going on. I ran a ping against the host to see if there was any life. Lo and behold...
 
