@@ -63,7 +63,7 @@ I installed the riser in the second PCI bay, which requires a 2nd CPU:
 
 My server sits in the basement, which means I rely on the remote console via iLo for OOB management. On power up, everything looked good:
 
-![ilo_good](/assets/images/2019-05-08-hp-gpu-cage/ilo_goodr.png)
+![ilo_good](/assets/images/2019-05-08-hp-gpu-cage/ilo_good.png)
 
 A few minutes later, though, and things were taking a turn:
 
