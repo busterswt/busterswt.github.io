@@ -206,9 +206,8 @@ Without any visibility into the instance itself, it's difficult to determine exa
 
 In the ARP [manpage](http://man7.org/linux/man-pages/man7/arp.7.html), `base_reachable_time_ms` is described as:
 
-```
-Once a neighbor has been found, the entry is considered to be valid for at least a random value between base_reachable_time_ms/2 and 3*base_reachable_time_ms/2.  An entry's validity will be extended if it receives positive feedback from higher level protocols.  Defaults to 30 seconds.
-```
+"Once a neighbor has been found, the entry is considered to be valid for at least a random value between `base_reachable_time_ms/2` and `3*base_reachable_time_ms/2`.  An entry's validity will be extended if it receives positive feedback from higher level protocols.  Defaults to 30 seconds."
+
 This description basically translates to this: An entry in the ARP table is considered REACHABLE for a duration of time between `base_reachable_time_ms/2` and `3*base_reachable_time_ms/2`, at which point it is marked STALE unless there is positive feedback from a higher level protocol (i.e. Layer 4). According to [RFC 1122](https://tools.ietf.org/html/rfc1122), the network stack may attempt to re-validate the entry in various ways before discarding the entry altogether. 
 
 What's important about `base_reachable_time_ms` here is that the default of 30 seconds and range of 15-45 seconds fits perfectly with the provided capture and observed behavior of an ARP request prior to infrequently-sent packets. Without looking at the neighbor table within the instance, it appears that the default value of 30 seconds may have been too aggressive for the application in use.
