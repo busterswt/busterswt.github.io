@@ -65,7 +65,7 @@ openstack security group rule create nsx --protocol tcp --dst-port 22
 
 ### Create a Neutron port
 
-The NSX Manager appliance is bootstrapped with a configuration that is injected into the image using the `guestfish` utility. Part of the configuration defines the IP address, netmask, and gateway for the Manager appliance. That said, now is a good time to create a Neutron port on the management network in order to know what the fixed IP will be so the configuration and be created accordingly.
+The NSX Manager appliance is bootstrapped with a configuration that is injected into the image using the `guestfish` utility. Part of the configuration defines the IP address, netmask, and gateway for the Manager appliance. That said, now is a good time to create a Neutron port on the management network in order to know what the fixed IP will be so the configuration can be created accordingly.
 
 ```
 # openstack port create --network LAN --security-group nsx NSX_MANAGER_MGMT --description 'NSX Manager'
@@ -181,7 +181,7 @@ Use the `guestfish` utility to inject the xml file as `/config/guestinfo`:
 # guestfish --rw -i -a nsx-unified-appliance-manager-3.1.0.0.0.17107212-le.qcow2 upload guestinfo-manager.xml /config/guestinfo
 ```
 
-After a brief moment, and with no feedback, the image will be modified. The verify, perform the following command:
+After a brief moment, and with no feedback, the image will be modified. To verify, perform the following command:
 
 ```
 # guestfish --ro -a nsx-unified-appliance-manager-3.1.0.0.0.17107212-le.qcow2 -i
@@ -410,7 +410,7 @@ At this point, all signs point to a successful deployment of the NSX-T Manager (
 ![](../assets/images/2021-04-07-installing-nsxt-manager-on-openstack/web.png)
 ![](../assets/images/2021-04-07-installing-nsxt-manager-on-openstack/dashboard.png)
 
-If you've downloaded and installed the VMUG-provide image (like me), configure your individualized license key by clicking on `Manager Licenses`. The *NSX For vShield Endpoint* license is included, but the *NSX Data Center Evaluation* license is what is (likely) required for the fun stuff.
+If you've downloaded and installed the VMUG-provided image (like me), configure your individualized license key by clicking on `Manage Licenses`. The *NSX For vShield Endpoint* license is included, but the *NSX Data Center Evaluation* license is what is (likely) required for the fun stuff.
 
 ![](../assets/images/2021-04-07-installing-nsxt-manager-on-openstack/license.png)
 
