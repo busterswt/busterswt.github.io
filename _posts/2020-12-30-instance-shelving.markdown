@@ -1,7 +1,7 @@
 ---
 title: "OpenStack: Instance Shelving"
 layout: post
-date: 2020-03-09
+date: 2020-12-30
 image: /assets/images/2020-12-30-instance-shelving/woman-with-a-full-closet.jpg
 headerImage: true
 tag:
