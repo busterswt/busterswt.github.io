@@ -17,14 +17,15 @@ description: "Installing NSX-T on OpenStack (Part 1)"
 
 For a long time now I've been interested in better understanding alternatives to a 'vanilla' Neutron deployment, but other than demonstrations and some hacking on OpenContrail a few years ago and Plumgrid years before that, I've really kept it simple by sticking to the upstream components and features.
 
-VMware's **NSX-T** product has been on my roadmap since it was first introduced as "compatible with All The Clouds™", and I'm hoping to deploy the NSX-T Manager and other components on my OpenStack cloud as virtual machine instances that in turn manage networking for a yet-to-be-deployed OpenStack-Ansible based OpenStack cloud in the home lab.
+VMware's **NSX-T** product has been on my roadmap since it was first introduced as "compatible with All The Clouds™", and I'm hoping to deploy the NSX-T Manager and other components on my OpenStack cloud as virtual machine instances that in turn manage networking for a yet-to-be-deployed OpenStack-Ansible based OpenStack cloud in the home lab.<!--more-->
 
 This post demonstrates the steps involved in prepping an OpenStack cloud to host the NSX-T Manager appliance. Future posts will cover additional requirements.
 
 First off, you'll need the following:
 
+- An OpenStack cloud!
 - Cinder volume support
-- At least one (1) network for management and other (TBD) networks
+- At least one (1) network for management
 - NSX-T software
 
 I loosely followed the guide [here](https://docs.vmware.com/en/VMware-NSX-T-Data-Center/3.1/installation/GUID-4200878F-DC59-4BE1-967C-374E5C985B9A.html) and modified the KVM-based installation accordingly.
