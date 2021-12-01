@@ -2,7 +2,7 @@
 title: "Configuring Masakari (Instance HA) on OpenStack-Ansible"
 layout: post
 date: 2021-12-01
-image: assets/images/2021-12-01-configuring-masakari-on-openstack-ansible/impact-of-downtime.png
+image: /assets/images/2021-12-01-configuring-masakari-on-openstack-ansible/impact-of-downtime.png
 headerImage: true
 tag:
 - openstack
