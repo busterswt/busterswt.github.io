@@ -16,9 +16,9 @@ description: "Mounting Virtual Media Using Redfish on iDRAC 8"
 
 Using HP iLO 4 for the last few years, you could say I've been a bit *spoiled* with some of the conveniences provided within.
 
-So, imagine my surprised when firing up my recently-acquired Dell R630 for the first time, only to find that HTTP-based virtual media was not an option in the UI!
+So, imagine my surprise when firing up my recently-acquired Dell R630 for the first time, only to find that HTTP-based virtual media was not an option in the UI!
 <!--more-->
-Some time later I came to find out that mounting virtual media requires the use of the API. No big deal, except that I had not found an obvious guide to using the included API (which I later found out was Redfish v1). It took some time to find a good, working example [here](https://github.com/dell/iDRAC-Redfish-Scripting/issues/24)
+Some time later I came to find out that mounting virtual media requires the use of the API. No big deal, except that I had not found an obvious guide to using the included API (which I later found out was Redfish v1). It took some time to find a good, working example [here](https://github.com/dell/iDRAC-Redfish-Scripting/issues/24).
 
 And now, I'll save you some time and trouble by demonstrating a mount and eject operation via curl.
 
@@ -117,13 +117,14 @@ BODY:
 
 The following example will ***eject*** an ISO using curl:
 
+```
 curl -v -k -X POST https://drac_ip_address>/redfish/v1/Managers/iDRAC.Embedded.1/VirtualMedia/CD/Actions/VirtualMedia.EjectMedia \
 -u root \
 -H 'Content-Type: application/json' \
 -d '{}'
+```
 
 And, yes, the payload is required (and empty) on an eject operation.
-
 
 A successful operation will result in an HTTP `204` status code:
 
@@ -183,7 +184,6 @@ Attempting to eject an ISO that is not attached will result in a `500` error:
 {"error":{"@Message.ExtendedInfo":[{"Message":"No Virtual Media devices are currently connected.","MessageArgs":[],"MessageArgs@odata.count":0,"MessageId":"IDRAC.1.6.VRM0009","RelatedProperties":[],"RelatedProperties@odata.count":0,"Resolution":"No response action is required.","Severity":"Critical"},{"Message":"The request failed due to an internal service error.  The service is still operational.","MessageArgs":[],"MessageArgs@odata.count":0,"MessageId":"Base.1.2.InternalError","RelatedProperties":[],"RelatedProperties@odata.count":0,"Resolution":"Resubmit the request.  If the problem persists, consider resetting the service.","Severity":"Critical"}],"code":"Base.1.2.GeneralError","message":"A general error has occurred. See ExtendedInfo for more information"}}
 ```
 
-#
 ## Summary
 
 Now that I know what to do, using the API can be faster (and more flexible) that the UI. However, getting there was a bit of a challenge. Hopefully this helps you on your journey.
