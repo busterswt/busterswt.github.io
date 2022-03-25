@@ -418,7 +418,9 @@ This was not the first time I'd come across this issue, and unfortunately, can n
 The following links were helpful in gaining a better understanding of what is/was happening and upstream changes being put in place to either keep it from happening in the future or more gracefully recover:
 
 [https://review.opendev.org/c/openstack/neutron/+/797796/](https://review.opendev.org/c/openstack/neutron/+/797796/)
+
 [https://bugzilla.redhat.com/show_bug.cgi?id=1975264](https://bugzilla.redhat.com/show_bug.cgi?id=1975264)
+
 [https://review.opendev.org/c/openstack/neutron/+/818132](https://review.opendev.org/c/openstack/neutron/+/818132)
 
 ---
