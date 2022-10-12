@@ -1,12 +1,11 @@
 excerpt_separator: <!--more-->
 
 # main text of home
-title: www.jimmdenton.com
-name: James Denton
+title: James Denton
 bio: openstack, networking, and random musings.
 
 # twitter summary info
-description: A blog about cloud and networking and other related things
+description: A blog about cloud and networking and other (un)related things
 
 # if it's an external image, update below for true
 # better with square images
