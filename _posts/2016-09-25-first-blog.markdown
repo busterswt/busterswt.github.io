@@ -8,7 +8,7 @@ tag:
 - blog
 - general
 category: blog
-blog: true
+hidden: false
 author: jamesdenton
 description: First blog. Nothing to see here.
 ---
