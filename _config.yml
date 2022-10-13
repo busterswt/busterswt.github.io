@@ -63,12 +63,13 @@ width: large
 # if you don't need pagination, comment the *paginate* configs below
 paginate: 5
 paginate_path: "blog/:num/"
-pagination:
-  enabled: true
-  sort_reverse: true # display recent posts first
-  title: ":title" # Changing this will mess up the header display logic
-  per_page: 5
-  permalink: "/:num/" # pagination link that will be appended
+# v2 doesn't work with GH Pages
+#pagination:
+#  enabled: true
+#  sort_reverse: true # display recent posts first
+#  title: ":title" # Changing this will mess up the header display logic
+#  per_page: 5
+#  permalink: "/:num/" # pagination link that will be appended
 
 # if you don't need projects, comment the *projects* configs below
 projects: false
