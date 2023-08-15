@@ -2,7 +2,7 @@
 title: "Why I Can't Recommend Renegade Tonneau Covers"
 layout: post
 date: 2023-08-14
-image: /assets/images/2022-10-12-openstack-bgp-speaker/jeff-bridges-what.gif
+image: /assets/images/2023-08-14-renegade-covers/badreview.png
 headerImage: true
 tag:
 - tonneau
@@ -53,4 +53,4 @@ In 2023, I have serious regrets about purchasing the Renegade tonneau cover and 
 
 ![Tonneau](/assets/images/2023-08-14-renegade-covers/cover.png)
 
-2.5 stars for fitting the part of a great looking and somewhat function tonneau, -7.5 stars for all of the stress it induces.
+2.5 stars for fitting the part of a great looking and somewhat function tonneau. -7.5 stars for all of the stress it induces.
