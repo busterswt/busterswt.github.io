@@ -1,5 +1,5 @@
 ---
-title: "Why I Can't Recommend Renegade Tonneau Covers"
+title: "Why I Can't Recommend Renegade Tonneau Covers (An Honest Review)"
 layout: post
 date: 2023-08-14
 image: /assets/images/2023-08-14-renegade-covers/badreview.png
@@ -9,6 +9,7 @@ tag:
 - renegade covers
 - renegade
 - diamondback
+- review
 category: blog
 blog: true
 author: jamesdenton
