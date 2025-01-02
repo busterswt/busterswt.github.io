@@ -11,7 +11,7 @@ tag:
 - diamondback
 - review
 category: blog
-blog: true
+blog: false
 author: jamesdenton
 description: "An honest review of the Renegade Tonneau Cover"
 ---
